@@ -6,6 +6,6 @@ usersRouter.use(express.json())
 usersRouter.get('/', usersController.getusers);
 usersRouter.post('/', usersController.addBook);
 usersRouter.put('/:id', usersController.updateBook);
-usersRouter.delete('/:id', usersController.deleteBook);
+usersRouter.delete('/', usersController.deleteBook);
 
 export default usersRouter

@@ -15,10 +15,10 @@ async function getAllLends(queryParams) {
 }
 
 async function addLend(lend) {
-    const { subscriptionId, bookId, return  } = lend;
+    const { subscriptionId, bookId,lendDate, returnDate } = lend;
     const [result] = await pool.query(
-        'INSERT INTO lends (name, authorName, category, img, cost, shelf) VALUES (?, ?, ?, ?, ?, ?)',
-        [name, authorName, category, img, cost, shelf]
+        'INSERT INTO lends (subscription_Id, book_Id, lend_Date, return_Date) VALUES (?, ?, ?, ?)',
+        [ subscriptionId, bookId,lendDate, returnDate ]
     );
     return { id: result.insertId, ...lend };
 }
@@ -28,7 +28,7 @@ async function updateLend(lend) {
         'UPDATE lends SET name = ? , authorName = ?, category = ?, img = ? cost = ?, shelf = ? WHERE id = ?',
         [lend.name, lend.authorName, lend.category, lend.img, lend.cost, lend.shelf, lend.id]
     );   
-    return { id, ...lend };
+    return { ...lend };
 }
 
 async function deleteLend(id) {
