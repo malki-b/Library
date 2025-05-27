@@ -1,10 +1,4 @@
-
-const express = require('express');
-
 const lendsService = require('../service/LendsService');
-const pool = require('../../DB/database');
-const router = express.Router()
-
 async function getLends(req, res) {
     try {
         const lends = await lendsService.getAllLends(req.query);
@@ -41,9 +35,11 @@ async function removeLend(req, res) {
     }
 }
 
-module.exports = {
+const lendsController = {
     getLends,
     createLend,
     updateLend,
     removeLend
 };
+
+export default lendsController

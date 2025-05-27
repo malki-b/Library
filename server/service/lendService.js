@@ -1,10 +1,6 @@
-// const pool = require('../../DB/database');
-// const express = require('express');
-// const router = express.Router();
 import pool from '../../DB/createConnection.js';
 import express from 'express';
 const router = express.Router();
-
 
 async function getAllLends(queryParams) {
     
@@ -39,13 +35,6 @@ async function deleteLend(id) {
     await pool.query('DELETE FROM lends WHERE id = ?', [id]);
     return { id };
 }
-
-// module.exports = {
-//     getAllLends,
-//     addLend,
-//     updateLend,
-//     deleteLend
-// };
 
 
 export default {

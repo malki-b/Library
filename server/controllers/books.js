@@ -1,6 +1,4 @@
-import express from 'express';
 import booksService from '../service/booksService.js';
-const router = express.Router()
 
 async function getBooks(req, res) {
     try {
@@ -44,6 +42,6 @@ const booksController = {
     createBook,
     updateBook,
     deleteBook
-  };
-  
-  export default booksController;
+};
+
+export default booksController;
