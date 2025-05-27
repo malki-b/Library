@@ -1,6 +1,10 @@
-const pool = require('../../DB/database');
-const express = require('express');
+// const pool = require('../../DB/database');
+// const express = require('express');
+// const router = express.Router();
+import pool from '../../DB/createConnection.js';
+import express from 'express';
 const router = express.Router();
+
 
 async function getAllLends(queryParams) {
     
@@ -15,7 +19,7 @@ async function getAllLends(queryParams) {
 }
 
 async function addLend(lend) {
-    const { subscriptionId, bookId, return  } = lend;
+    const { subscriptionId, bookId} = lend;
     const [result] = await pool.query(
         'INSERT INTO lends (name, authorName, category, img, cost, shelf) VALUES (?, ?, ?, ?, ?, ?)',
         [name, authorName, category, img, cost, shelf]
@@ -36,9 +40,17 @@ async function deleteLend(id) {
     return { id };
 }
 
-module.exports = {
+// module.exports = {
+//     getAllLends,
+//     addLend,
+//     updateLend,
+//     deleteLend
+// };
+
+
+export default {
     getAllLends,
     addLend,
     updateLend,
-    deleteLend
-};
+    deleteLend,
+  };
