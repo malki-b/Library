@@ -1,8 +1,5 @@
-
-const express = require('express');
-
-const booksService = require('../service/booksService');
-const pool = require('../../DB/database');
+import express from 'express';
+import booksService from '../service/booksService.js';
 const router = express.Router()
 
 async function getBooks(req, res) {
@@ -32,7 +29,7 @@ async function updateBook(req, res) {
     }
 }
 
-async function removeBook(req, res) {
+async function deleteBook(req, res) {
     try {
         const deleted = await booksService.deleteBook(req.params.id);
         res.json(deleted);
@@ -41,9 +38,12 @@ async function removeBook(req, res) {
     }
 }
 
-module.exports = {
+
+const booksController = {
     getBooks,
     createBook,
     updateBook,
-    removeBook
-};
+    deleteBook
+  };
+  
+  export default booksController;

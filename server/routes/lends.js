@@ -1,5 +1,5 @@
 import express from 'express';
-const lendsController = require('../controllers/lends.js');
+import lendsController from '../controllers/lends.js'
 const lendsRouter = express.Router();
 lendsRouter.use(express.json())
 

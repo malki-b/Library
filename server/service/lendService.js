@@ -1,6 +1,10 @@
-const pool = require('../../DB/database');
-const express = require('express');
+// const pool = require('../../DB/database');
+// const express = require('express');
+// const router = express.Router();
+import pool from '../../DB/createConnection.js';
+import express from 'express';
 const router = express.Router();
+
 
 async function getAllLends(queryParams) {
     
@@ -36,9 +40,17 @@ async function deleteLend(id) {
     return { id };
 }
 
-module.exports = {
+// module.exports = {
+//     getAllLends,
+//     addLend,
+//     updateLend,
+//     deleteLend
+// };
+
+
+export default {
     getAllLends,
     addLend,
     updateLend,
-    deleteLend
-};
+    deleteLend,
+  };

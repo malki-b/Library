@@ -1,5 +1,5 @@
 import express from 'express';
-const usersController =require('../controllers/users.js');
+import usersController from '../controllers/users.js'
 const usersRouter = express.Router();
 usersRouter.use(express.json())
 
