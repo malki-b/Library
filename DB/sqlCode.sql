@@ -3,19 +3,20 @@ CREATE DATABASE IF not exists independentLibrary;
 USE independentLibrary;
 
 CREATE TABLE IF NOT EXISTS users 
-(id INT AUTO_INCREMENT PRIMARY KEY,
+(	id INT PRIMARY KEY,
     name VARCHAR(30),
     email VARCHAR(30),
     address VARCHAR(50), 
     role VARCHAR(15),
     num_of_people int,
     debt int DEFAULT 0
-) AUTO_INCREMENT = 100000;
+);
 
-CREATE TABLE IF NOT EXISTS users_passwords (
+CREATE TABLE IF NOT EXISTS Subscription_Num (
     id INT,
-    password VARCHAR(30),  
-    PRIMARY KEY(id), 
+    subscription_num INT,
+    PRIMARY KEY(subscription_num), 
+    PRIMARY KEY(id),
     FOREIGN KEY(id) 
         REFERENCES users(id) 
 );
@@ -56,7 +57,7 @@ INSERT INTO users (name, email, address, role, num_of_people, debt) VALUES
     ('Nechama', 'nechama@example.com', 'Rav Kook St 11, Jerusalem', 'subscription', 2, 0),
     ('Meir', 'meir@example.com', 'Yehuda St 12, Jerusalem', 'subscription', 8, 0),
     ('Leah', 'leah@example.com', 'Chabad St 13, Jerusalem', 'subscription', 5, 0),
-    ('Oren', 'oren@example.com', 'HaMaalot St 14, Jerusalem', 'subscription', 3, 0),
+    ( 'Oren', 'oren@example.com', 'HaMaalot St 14, Jerusalem', 'subscription', 3, 0),
     ('Roni', 'roni@example.com', 'Bialik St 15, Jerusalem', 'subscription', 4, 10),
     ('Orit', 'orit@example.com', 'Golda Meir St 16, Jerusalem', 'subscription', 2, 0),
     ('Eyal', 'eyal@example.com', 'Peretz St 17, Jerusalem', 'subscription', 3, 0),
@@ -66,29 +67,27 @@ INSERT INTO users (name, email, address, role, num_of_people, debt) VALUES
     ('Ofer', 'ofer@example.com', 'King George St 21, Jerusalem', 'subscription', 3, 0),
     ('malki', 'malki140718@gmail.com', 'Sulam Yaakov 2, Jerusalem', 'subscription', 7, 0);
 
-
-INSERT INTO users_passwords (id, password) VALUES
-    (100000, 'password1'),
-    (100001, 'password2'),
-    (100002, 'password3'),
-    (100003, 'password4'),
-    (100004, 'password5'),
-    (100005, 'password6'),
-    (100006, 'password7'),
-    (100007, 'password8'),
-    (100008, 'password9'),
-    (100009, 'password10'),
-    (100010, 'password11'),
-    (100011, 'password12'),
-    (100012, 'password13'),
-    (100013, 'password14'),
-    (100014, 'password15'),
-    (100015, 'password16'),
-    (100016, 'password17'),
-    (100017, 'password18'),
-    (100018, 'password19'),
-    (100019, 'password20');
-
+INSERT INTO Subscription_Num (id, password) VALUES
+    (100000, 995632),
+    (100001, 874612),
+    (100002, 784561),
+    (100003, 546237),
+    (100004, 953846),
+    (100005, 379512),
+    (100006, 398571),
+    (100007, 268953),
+    (100008, 891286),
+    (100009, 507108),
+    (100010, 635894),
+    (100011, 326941),
+    (100012, 951328),
+    (100013, 232876),
+    (100014, 225460),
+    (100015, 125894),
+    (100016, 451297),
+    (100017, 129834),
+    (100018, 128964),
+    (100019, 128964);
 INSERT INTO books(name, author_name, category, img, cost, shelf) VALUES
 	('Haotzar Nishar BaMishPacha', 'Jakobson Shula', 'children', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2025/04/2074402-scaled.jpg', 55, 17),
     ('Lizkor Et Machar', 'Hofman Zecharia', 'adults', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2025/04/8282880.jpg', 78, 10),

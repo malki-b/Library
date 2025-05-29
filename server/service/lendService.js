@@ -36,7 +36,6 @@ async function deleteLend(id) {
     return { id };
 }
 
-
 export default {
     getAllLends,
     addLend,
