@@ -1,30 +1,30 @@
-CREATE DATABASE IF not exists independentLibrary;
+CREATE DATABASE IF NOT EXISTS independentLibrary;
 
 USE independentLibrary;
 
 CREATE TABLE IF NOT EXISTS users 
-(	id INT PRIMARY KEY,
+(
+    id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30),
     email VARCHAR(30),
     address VARCHAR(50), 
     role VARCHAR(15),
-    num_of_people int,
-    debt int DEFAULT 0
+    numOfFamilyMembers INT,
+    debt INT DEFAULT 0
 );
 
-CREATE TABLE IF NOT EXISTS Subscription_Num (
-    id INT,
-    subscription_num INT,
-    PRIMARY KEY(subscription_num), 
-    PRIMARY KEY(id),
+CREATE TABLE IF NOT EXISTS SubscriptionNum (
+    id INT PRIMARY KEY,
+    subscriptionNum INT UNIQUE,
     FOREIGN KEY(id) 
         REFERENCES users(id) 
+        ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS books (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30),
-    author_name VARCHAR(30),
+    authorName VARCHAR(30),
     category VARCHAR(10),
     img VARCHAR(100),
     cost INT, 
@@ -33,18 +33,21 @@ CREATE TABLE IF NOT EXISTS books (
 
 CREATE TABLE IF NOT EXISTS lends (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    subscription_id INT NOT NULL,
-    book_id INT NOT NULL,
-    lend_date DATE NOT NULL,
-    return_date DATE,
-    FOREIGN KEY(subscription_id) 
-        REFERENCES users(id),
-    FOREIGN KEY(book_id) 
+    subscriptionId INT NOT NULL,
+    bookId INT NOT NULL,
+    lendDate DATE NOT NULL,
+    returnDate DATE,
+    FOREIGN KEY(subscriptionId) 
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+    FOREIGN KEY(bookId) 
         REFERENCES books(id)
+        ON DELETE CASCADE
 );
 
-INSERT INTO users (name, email, address, role, num_of_people, debt) VALUES
-    ('Avi', 'avi@example.com', 'Herzl St 1, Jerusalem', 'manager', 0, 0),
+INSERT INTO users (name, email, address, role, numOfFamilyMembers, debt) VALUES
+	('Mali', 'g025714084@gmail.com', 'Sulam Yaakov 10, Jerusalem', 'manager', 3, 0),
+    ('Avi', 'avi@example.com', 'Herzl St 1, Jerusalem', 'subscription', 0, 0),
     ('Michal', 'michal@example.com', 'Yaffo St 2, Jerusalem', 'subscription', 3, 0),
     ('David', 'david@example.com', 'Ben Yehuda St 3, Jerusalem', 'subscription', 5, 0),
     ('Sarah', 'sara@example.com', 'Shlomo Hamelech St 4, Jerusalem', 'subscription', 2, 0),
@@ -65,30 +68,33 @@ INSERT INTO users (name, email, address, role, num_of_people, debt) VALUES
     ('Raz', 'raz@example.com', 'Shderot St 19, Jerusalem', 'subscription', 10, 0),
     ('Gila', 'gila@example.com', 'Petah Tikva St 20, Jerusalem', 'subscription', 2, 0),
     ('Ofer', 'ofer@example.com', 'King George St 21, Jerusalem', 'subscription', 3, 0),
-    ('malki', 'malki140718@gmail.com', 'Sulam Yaakov 2, Jerusalem', 'subscription', 7, 0);
-
-INSERT INTO Subscription_Num (id, password) VALUES
-    (100000, 995632),
-    (100001, 874612),
-    (100002, 784561),
-    (100003, 546237),
-    (100004, 953846),
-    (100005, 379512),
-    (100006, 398571),
-    (100007, 268953),
-    (100008, 891286),
-    (100009, 507108),
-    (100010, 635894),
-    (100011, 326941),
-    (100012, 951328),
-    (100013, 232876),
-    (100014, 225460),
-    (100015, 125894),
-    (100016, 451297),
-    (100017, 129834),
-    (100018, 128964),
-    (100019, 128964);
-INSERT INTO books(name, author_name, category, img, cost, shelf) VALUES
+    ('Malki', 'malki140718@gmail.com', 'Sulam Yaakov 2, Jerusalem', 'subscription', 7, 0);
+    
+INSERT INTO SubscriptionNum (id, subscriptionNum) VALUES
+    (1, 654321),
+    (2, 784561),
+    (3, 546237),
+    (4, 953846),
+    (5, 379512),
+    (6, 398571),
+    (7, 268953),
+    (8, 891286),
+    (9, 507108),
+    (10, 635894),
+    (11, 326941),
+    (12, 951328),
+    (13, 232876),
+    (14, 225460),
+    (15, 125894),
+    (16, 451297),
+    (17, 129834),
+    (18, 128964),
+    (19, 128324),
+	(20, 995632),
+    (21, 362847),
+    (22, 257961),
+    (23, 123456);
+INSERT INTO books(name, authorName, category, img, cost, shelf) VALUES
 	('Haotzar Nishar BaMishPacha', 'Jakobson Shula', 'children', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2025/04/2074402-scaled.jpg', 55, 17),
     ('Lizkor Et Machar', 'Hofman Zecharia', 'adults', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2025/04/8282880.jpg', 78, 10),
     ('Olam Neche', 'Ana Batia', 'adults', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2021/06/1770-11.jpg', 28, 10),
@@ -109,13 +115,13 @@ INSERT INTO books(name, author_name, category, img, cost, shelf) VALUES
     ('Hayom Ani', 'Ary N', 'adults', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2022/09/2114.jpg', 65, 15),
     ('Tzomet HaDrorim', 'Hertzberg Chaya','adults', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2022/05/2082.jpg', 60, 15);
     
-INSERT INTO lends(subscription_id, book_id, lend_date, return_date) VALUES
-    (100001, 5, '2025-01-01', '2025-01-05'),
-    (100002, 8, '2025-02-03', '2025-03-01'),
-    (100003, 7, '2025-02-10', '2025-03-05'),
-    (100000, 3, '2025-03-05', '2025-04-01'),
-    (100009, 11, '2025-04-01', '2025-04-22'),
-    (100010, 17, '2025-05-01', NULL),
-    (100014, 12, '2025-05-06', '2025-05-10'),
-    (100010, 15, '2025-05-10', NULL),
-    (100013, 7, '2025-05-15', NULL);
+INSERT INTO lends(subscriptionId, bookId, lendDate, returnDate) VALUES
+    (1, 5, '2025-01-01', '2025-01-05'),
+    (2, 8, '2025-02-03', '2025-03-01'),
+    (3, 7, '2025-02-10', '2025-03-05'),
+    (3, 3, '2025-03-05', '2025-04-01'),
+    (9, 11, '2025-04-01', '2025-04-22'),
+    (10, 17, '2025-05-01', NULL),
+    (14, 12, '2025-05-06', '2025-05-10'),
+    (10, 15, '2025-05-10', NULL),
+    (13, 7, '2025-05-15', NULL);

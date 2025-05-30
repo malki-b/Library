@@ -11,7 +11,7 @@ async function getAllUsers(req, res) {
 
 async function getUser(req, res) {
     try {
-        const user = await usersService.getUserByID(req.id);
+        const user = await usersService.getUserByID(req.params.id);
         res.json(user);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -21,7 +21,8 @@ async function getUser(req, res) {
 async function createUser(req, res) {
     try {
         const newUserId = await usersService.addUser(req.body);
-        const subscriptionNum = await usersService.addSubscriptionNum(newUserId)
+        const subscriptionNum = Math.floor(Math.random() * 900000) + 100000;
+        await usersService.addSubscriptionNum(newUserId, encrypt(subscriptionNum))
         res.status(201).json(subscriptionNum);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -48,11 +49,43 @@ async function deleteUser(req, res) {
 
 async function authenticateUser(req, res) {
     try {
-        const user = await usersService.getUserBysubscriptionNameAndSubscriptionNum(req.body.name, req.body.subscriptionNum);
+        const user = await usersService.getUserBysubscriptionNameAndSubscriptionNum(req.body.name, encrypt(req.body.subscriptionNum));
         res.json(user);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+}
+
+function encrypt(number) {
+    if (number < 100000 || number > 999999) {
+        throw new Error("Number must be a 6-digit number.");
+    }
+
+    let encrypted = '';
+    const shift = 5;
+
+    for (let digit of String(number)) {
+        let encryptedDigit = (parseInt(digit) + shift) % 10; // הצפנה
+        encrypted += encryptedDigit;
+    }
+
+    return encrypted;
+}
+
+function decrypt(encryptedNumber) {
+    if (encryptedNumber.length !== 6) {
+        throw new Error("Encrypted number must be a 6-digit number.");
+    }
+
+    let decrypted = '';
+    const shift = 5;
+
+    for (let digit of String(encryptedNumber)) {
+        let decryptedDigit = (parseInt(digit) - shift + 10) % 10; // פענוח
+        decrypted += decryptedDigit;
+    }
+
+    return decrypted;
 }
 
 const UsersController = {

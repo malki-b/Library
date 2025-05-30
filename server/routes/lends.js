@@ -1,11 +1,12 @@
 import express from 'express';
-import lendsController from '../controllers/lends.js'
+import lendsController from '../controllers/lends.js';
+
 const lendsRouter = express.Router();
 lendsRouter.use(express.json())
 
-lendsRouter.get('/', lendsController.getlends);
-lendsRouter.post('/', lendsController.addBook);
-lendsRouter.put('/:id', lendsController.updateBook);
-lendsRouter.delete('/', lendsController.deleteBook);
+lendsRouter.get('/', lendsController.getLends);
+lendsRouter.post('/', lendsController.createLend);
+lendsRouter.put('/', lendsController.updateLend);
+lendsRouter.delete('/:id', lendsController.deleteLend);
 
 export default lendsRouter

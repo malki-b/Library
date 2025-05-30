@@ -13,23 +13,22 @@ async function getUserByID(id) {
 }
 
 async function getUserBysubscriptionNameAndSubscriptionNum(name, subscriptionNum) {
-    const [users] = await pool.query("SELECT u.* FROM users u JOIN users_passwords up ON u.id = up.id WHERE up.name = ? AND up.subscription_Num = ?;", [name, subscriptionNum]);
+    const [users] = await pool.query("SELECT u.* FROM users u JOIN SubscriptionNum sn ON u.id = sn.id WHERE u.name = ? AND sn.subscriptionNum = ?;", [name, subscriptionNum]);
     return users.length > 0 ? users[0] : null;;
 }
 
 async function addUser(user) {
     const { name, email, address, role, numOfFamilyMembers, debt } = user;
     const [result] = await pool.query(
-        'INSERT INTO users VALUES (?, ?, ?, ?, ?, ?)',
+        'INSERT INTO users(name, email, address, role, numOfFamilyMembers, debt) VALUES (?, ?, ?, ?, ?, ?)',
         [name, email, address, role, numOfFamilyMembers, debt]
     );
-    return { id: result.insertId, ...user };
+    return result.insertId;
 }
 
-async function addSubscriptionNum(userId){
-    const subscriptionNum = Math.floor(Math.random() * (99999999 - 100000 + 1)) + 100000;
+async function addSubscriptionNum(userId, subscriptionNum){
     await pool.query(
-        'INSERT INTO users VALUES (?, ?)',
+        'INSERT INTO SubscriptionNum VALUES (?, ?)',
         [userId, subscriptionNum]
     );
     return subscriptionNum;

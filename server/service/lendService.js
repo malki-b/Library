@@ -17,7 +17,7 @@ async function getAllLends(queryParams) {
 async function addLend(lend) {
     const { subscriptionId, bookId,lendDate, returnDate } = lend;
     const [result] = await pool.query(
-        'INSERT INTO lends (subscription_Id, book_Id, lend_Date, return_Date) VALUES (?, ?, ?, ?)',
+        'INSERT INTO lends (subscriptionId, bookId, lendDate, returnDate) VALUES (?, ?, ?, ?)',
         [ subscriptionId, bookId,lendDate, returnDate ]
     );
     return { id: result.insertId, ...lend };
@@ -25,8 +25,8 @@ async function addLend(lend) {
 
 async function updateLend(lend) {
     await pool.query(
-        'UPDATE lends SET name = ? , authorName = ?, category = ?, img = ? cost = ?, shelf = ? WHERE id = ?',
-        [lend.name, lend.authorName, lend.category, lend.img, lend.cost, lend.shelf, lend.id]
+        'UPDATE lends SET subscriptionId = ? , bookId = ?, lendDate = ?, returnDate = ?  WHERE id = ?',
+        [lend.subscriptionId, lend.bookId, lend.lendDate, lend.returnDate, lend.id]
     );   
     return { ...lend };
 }

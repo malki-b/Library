@@ -1,4 +1,5 @@
-const lendsService = require('../service/LendsService');
+import lendsService from '../service/lendService.js';
+
 async function getLends(req, res) {
     try {
         const lends = await lendsService.getAllLends(req.query);
@@ -26,7 +27,7 @@ async function updateLend(req, res) {
     }
 }
 
-async function removeLend(req, res) {
+async function deleteLend(req, res) {
     try {
         const deleted = await lendsService.deleteLend(req.params.id);
         res.json(deleted);
@@ -39,7 +40,7 @@ const lendsController = {
     getLends,
     createLend,
     updateLend,
-    removeLend
+    deleteLend
 };
 
 export default lendsController

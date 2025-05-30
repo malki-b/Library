@@ -5,9 +5,9 @@ usersRouter.use(express.json())
 
 usersRouter.get('/', usersController.getAllUsers);
 usersRouter.get('/:id', usersController.getUser);
-usersRouter.post('/', usersController.addUser);
-usersRouter.put('/:id', usersController.updateUser);
-usersRouter.delete('/', usersController.deleteUser);
+usersRouter.post('/', usersController.createUser);
+usersRouter.put('/', usersController.updateUser);
+usersRouter.delete('/:id', usersController.deleteUser);
 usersRouter.post('/login', usersController.authenticateUser);
 
 export default usersRouter
