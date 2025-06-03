@@ -1,4 +1,4 @@
-import requests from "../../tools/requests";
+import {DELETE} from '../general/queries'
 import { useState } from 'react';
 
 function Delete({ id, type, setArrObjs, isSimpleArrObjects }) {
@@ -7,7 +7,7 @@ function Delete({ id, type, setArrObjs, isSimpleArrObjects }) {
     
     async function deleteObj() {
         try{
-            await requests.deleteData(`${type}/${id}`);
+            await DELETE(`http://localhost:3000/${type}/${id}`);
         }
         catch(e){
             setError(e)

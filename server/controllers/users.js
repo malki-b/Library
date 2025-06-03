@@ -20,10 +20,14 @@ async function getUser(req, res) {
 
 async function createUser(req, res) {
     try {
-        const newUserId = await usersService.addUser(req.body);
+        let user = req.body;
+        const newUserId = await usersService.addUser(user);
+        user.id = newUserId;
         const subscriptionNum = Math.floor(Math.random() * 900000) + 100000;
+        user.subscriptionNum = subscriptionNum
+        console.log(user)
         await usersService.addSubscriptionNum(newUserId, encrypt(subscriptionNum))
-        res.status(201).json(subscriptionNum);
+        res.status(201).json(user);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

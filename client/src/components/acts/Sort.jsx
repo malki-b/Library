@@ -1,36 +1,35 @@
 import React, { useState } from "react";
-function Sort({todos, setTodos}) {
-    const [sortBy, setSortBy] = useState(" ");
+
+function Sort({arrObjs, setArrObjs, sortFields }) {
+    const [sortBy, setSortBy] = useState("");
 
     async function sort() {
-        const sortedTodos = [...todos.search];
-        switch (sortBy) {
-            case 'id':
-                sortedTodos.sort((t1, t2) => parseInt(t1.id, 16) - parseInt(t2.id, 16));
-                break;
-            case 'title':
-                sortedTodos.sort((t1, t2) => t1.title.localeCompare(t2.title));
-                break;
-            default:
-                sortedTodos.sort((t1, t2) => (t1[sortBy] - t2[sortBy]));
-                break;
-        }
-        setTodos({ ...todos, search: sortedTodos });
+        const sortedObjs = [...arrObjs.search];
+            sortedObjs.sort((t1, t2) => compareValues(t1[sortBy], t2[sortBy]));
+        setArrObjs({ ...arrObjs, search: sortedObjs });
     };
 
+    function compareValues(value1, value2) {
+        if (typeof value1 === 'number' && typeof value2 === 'number') {
+            return value1 - value2; 
+        } else {
+            return value1.localeCompare(value2); 
+        }
+    }
     return (
         <>
             <div>
                 <label htmlFor="sortBy">Sort by:</label>
                 <select name="sortBy" id="sortBy" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                    <option value="">  </option>
-                    <option value="id">id</option>
-                    <option value="title">title</option>
-                    <option value="completed">is completed</option>
+                    <option value="">Select a field</option>
+                    {sortFields.map((field, i) => (
+                        <option key={i} value={field}>{field}</option>
+                    ))}
                 </select>
             </div>
-            <button onClick={sort}>sort</button>
+            <button onClick={sort}>Sort</button>
         </>
-    )
+    );
 }
-export default Sort
+
+export default Sort;

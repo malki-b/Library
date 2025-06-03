@@ -32,22 +32,14 @@ export default function Routers() {
     const [currentUser, setCurrentUser] = useState(
         JSON.parse(localStorage.getItem("currentUser")) || null
     );
-
     useEffect(() => {
         const fetchData = async () => {
             const user = JSON.parse(localStorage.getItem("currentUser"));
             if (user) {
                 try {
-                    const currentUser = await GET(`http://localhost:3000/users/${user.id}`);
+                    const currentUser = await GET(`http://localhost:3000/users/1`);
                     if (currentUser.length > 0) {
-                        const formattedUser = {
-                            id: currentUser[0].id,
-                            name: currentUser[0].name,
-                            username: currentUser[0].username,
-                            email: currentUser[0].email,
-                            phone: currentUser[0].phone,
-                        };
-                        setCurrentUser(formattedUser);
+                        setCurrentUser(currentUser[0]);
                     }
                 } catch (error) {
                     console.error("Error fetching user data:", error);

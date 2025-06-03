@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import requests from "../../tools/requests";
+import {PUT} from '../general/queries'
 function Edit({ obj, arrObjs, setArrObjs, type, displayFields, isSimpleArrObjects }) {
 
         const [error, setError] = useState(null)
@@ -9,7 +9,7 @@ function Edit({ obj, arrObjs, setArrObjs, type, displayFields, isSimpleArrObject
         const object = obj
         delete object.isEditState
         try{
-        await requests.storeData(`${type}/${obj.id}`, object, 'PUT')
+        await PUT(`http://localhost:3000/${type}`, object)
         }
         catch(e){
             setError(e)
@@ -56,7 +56,11 @@ function Edit({ obj, arrObjs, setArrObjs, type, displayFields, isSimpleArrObject
                                 name={field} />
                         </div>
                         :
-                        <div>{obj[field]}</div>
+                        <>
+                        <span>{field}:</span>
+                        <span>{obj[field]}</span>
+
+                        </>
                     }
                 </div>))}
             </div>

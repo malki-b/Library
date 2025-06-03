@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS lends (
 
 INSERT INTO users (name, email, address, role, numOfFamilyMembers, debt) VALUES
 	('Mali', 'g025714084@gmail.com', 'Sulam Yaakov 10, Jerusalem', 'manager', 3, 0),
-    ('Avi', 'avi@example.com', 'Herzl St 1, Jerusalem', 'subscription', 0, 0),
+    ('Avi', 'avi@example.com', 'Herzl St 1, Jerusalem', 'subscription', 5, 0),
     ('Michal', 'michal@example.com', 'Yaffo St 2, Jerusalem', 'subscription', 3, 0),
     ('David', 'david@example.com', 'Ben Yehuda St 3, Jerusalem', 'subscription', 5, 0),
     ('Sarah', 'sara@example.com', 'Shlomo Hamelech St 4, Jerusalem', 'subscription', 2, 0),
