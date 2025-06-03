@@ -1,40 +1,47 @@
 import React from "react";
-function Search({ arrObjs, setArrObjs, fields, findFieldsVal, setFindFieldsVal }) {
 
+function Search({ arrObjs, setArrObjs, fields, findFieldsVal, setFindFieldsVal }) {
     
     function find() {
-        let searchObjs = [...arrObjs.all]
+        let searchObjs = [...arrObjs.all];
         fields.forEach(field => {
-            if (field == 'id') {
-                if (findFieldsVal.id != "") {
-                    const object = searchObjs.find(obj =>obj.id == findFieldsVal.id)
-                    searchObjs = object == null ? [] : [object]
-                }
+            if (findFieldsVal[field] !== '') {
+                searchObjs = searchObjs.filter(obj => filterNumbersAndStrings(obj, field));
             }
-            else {
-                if (findFieldsVal[field] != '') {
-                    searchObjs = searchObjs.filter(obj => (String)(obj[field]).includes(findFieldsVal[field]))
-                }
-            }
-
         });
-        setArrObjs({ ...arrObjs, search: searchObjs })
+        setArrObjs({ ...arrObjs, search: searchObjs });
     }
 
-    return (<>
-        <div>
-            {
-                fields.map((field, i) =>
-                    <div key={i}>
-                        <label htmlFor={field}>{field}</label>
-                        <input type='text' name={field} id={field} onChange={(e) => setFindFieldsVal(prev => ({ ...prev, [field]: e.target.value }))} />
-                    </div>
-                )
-            }
-        </div>
-        <button onClick={find}>search</button>
-    </>
-    )
+    function filterNumbersAndStrings(obj, field) {
+        const objValue = obj[field];
+        const searchValue = findFieldsVal[field];
+        const objNumber = Number(objValue);
+        const searchNumber = Number(searchValue);
+        const objIsNumeric = !isNaN(objNumber);
+        const searchIsNumeric = !isNaN(searchNumber);
+        
+        if (objIsNumeric && searchIsNumeric) {
+            return objNumber === searchNumber;
+        } else {
+            return String(objValue).includes(searchValue);
+        }
+    }
 
+    return (
+        <>
+            <div>
+                {
+                    fields.map((field, i) =>
+                        <div key={i}>
+                            <label htmlFor={field}>{field}</label>
+                            <input type='text' name={field} id={field} onChange={(e) => setFindFieldsVal(prev => ({ ...prev, [field]: e.target.value }))} />
+                        </div>
+                    )
+                }
+            </div>
+            <button onClick={find}>Search</button>
+        </>
+    );
 }
-export default Search
+
+export default Search;

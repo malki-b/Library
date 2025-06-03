@@ -13,14 +13,7 @@ app.use('/users', usersRouter);
 app.use('/books', booksRouter);
 app.use('/lends', lendsRouter);
 app.use('/', (req, res) => {
-    res.send(`
-        <h1>Welcome to the Library server!</h1>
-        <ul>
-            <li><a href="/users">Users</a></li>
-            <li><a href="/books">Books</a></li>
-            <li><a href="/lends">Lends</a></li>
-        </ul>
-    `);
+    res.send('404 no valid url');
 });
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
