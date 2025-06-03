@@ -38,7 +38,7 @@ export default function Routers() {
             const user = JSON.parse(localStorage.getItem("currentUser"));
             if (user) {
                 try {
-                    const currentUser = await GET(`http://localhost:3000/users/?username=${user.username}`);
+                    const currentUser = await GET(`http://localhost:3000/users/${user.id}`);
                     if (currentUser.length > 0) {
                         const formattedUser = {
                             id: currentUser[0].id,
@@ -65,6 +65,12 @@ export default function Routers() {
                     <Route path="/signup" element={<SignUp />} />
                     <Route
                         path="/home"
+                        element={
+                            <Homepage />
+                        }
+                    />
+                    <Route
+                        path="/"
                         element={
                             <Homepage />
                         }
