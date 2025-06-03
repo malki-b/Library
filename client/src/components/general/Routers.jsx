@@ -1,6 +1,8 @@
 import  { useState, createContext, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import Home from "./Home";//
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Homepage from "./Homepage";
 import { GET } from "./queries";
 import Login from "./Login";
 import SignUp from "./SignUp";
@@ -64,7 +66,7 @@ export default function Routers() {
                     <Route
                         path="/home"
                         element={
-                            <Home />
+                            <Homepage />
                         }
                     />
                     <Route

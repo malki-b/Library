@@ -1,9 +1,9 @@
-function Home(){
+function Homepage(){
 return(
     <>
     <h1>home</h1>
     </>
 )
 }
-export default Home
+export default Homepage
 // Compare this snippet from client/src/components/general/DisplayBooks.jsx:
