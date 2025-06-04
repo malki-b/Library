@@ -30,9 +30,9 @@ function Login() {
                 setSubscriptionNum("");
 
                 if (user.role === 'manager') {
-                    navigate('/manager-homepage');
+                    navigate('/manager/homepage');
                 } else if (user.role === 'subscription') {
-                    navigate('/subscription-homepage');
+                    navigate('/subscription/homepage');
                 } else {
                     setErrorMessage("Unknown user role.");
                 }

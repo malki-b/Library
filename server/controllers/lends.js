@@ -2,11 +2,23 @@ import lendsService from '../service/lendService.js';
 
 async function getLends(req, res) {
     try {
-        const lends = await lendsService.getAllLends(req.query);
-        res.json(lends);
+        const lends = await lendsService.getAllLends(req.query);        
+        const formattedLends = lends.map(lend => ({
+            ...lend,
+            lendDate: lend.lendDate ? formatDate(new Date(lend.lendDate)) : null,
+            returnDate: lend.returnDate ? formatDate(new Date(lend.returnDate)) : null
+        }));
+        res.json(formattedLends);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+}
+
+function formatDate(date) {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
 }
 
 async function createLend(req, res) {

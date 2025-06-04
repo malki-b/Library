@@ -1,4 +1,8 @@
 import usersService from '../service/usersService.js';
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 async function getAllUsers(req, res) {
     try {
@@ -25,15 +29,13 @@ async function createUser(req, res) {
         user.id = newUserId;
         const subscriptionNum = Math.floor(Math.random() * 900000) + 100000;
         user.subscriptionNum = subscriptionNum
-        console.log(user)
         await usersService.addSubscriptionNum(newUserId, encrypt(subscriptionNum))
-        console.log("USER TYPE:", typeof user, user);
         res.status(201).json({
     ...user,
     id: newUserId,
-    subscriptionNum // כאן זה מגיע ל-frontend כמו שצריך
+    subscriptionNum 
 });
-        // res.status(201).json(user);
+       
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -63,6 +65,36 @@ async function authenticateUser(req, res) {
         res.json(user);
     } catch (error) {
         res.status(500).json({ error: error.message });
+    }
+}
+
+async function sendEmail(req, res)
+{
+   const transporter = nodemailer.createTransport({
+        host:  'smtp.gmail.com',
+        port: 587,
+        secure:false,
+        auth: {
+            user: process.env.EMAIL_ADDRESS,
+            pass: process.env.EMAIL_PASSWORD
+        }
+    });
+
+    const mailOptions = {
+        from: process.env.EMAIL_ADDRESS,
+        to: req.body.recipient,
+        subject: req.body.subject,
+        text: req.body.message,
+    };
+
+    console.log(mailOptions);
+    
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully!');
+    } catch (error) {
+        console.error('Error sending email:', error);
     }
 }
 
@@ -104,7 +136,8 @@ const UsersController = {
     createUser,
     updateUser,
     deleteUser,
-    authenticateUser
+    authenticateUser,
+    sendEmail
 };
 
 export default UsersController;

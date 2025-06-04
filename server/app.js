@@ -13,7 +13,7 @@ app.use('/users', usersRouter);
 app.use('/books', booksRouter);
 app.use('/lends', lendsRouter);
 app.use('/', (req, res) => {
-    res.send('404 no valid url');
+    res.send('Unsupported url');
 });
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
