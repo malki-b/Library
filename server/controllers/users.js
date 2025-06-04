@@ -27,7 +27,13 @@ async function createUser(req, res) {
         user.subscriptionNum = subscriptionNum
         console.log(user)
         await usersService.addSubscriptionNum(newUserId, encrypt(subscriptionNum))
-        res.status(201).json(user);
+        console.log("USER TYPE:", typeof user, user);
+        res.status(201).json({
+    ...user,
+    id: newUserId,
+    subscriptionNum // כאן זה מגיע ל-frontend כמו שצריך
+});
+        // res.status(201).json(user);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
