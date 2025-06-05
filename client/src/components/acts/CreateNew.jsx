@@ -1,11 +1,10 @@
 import { POST } from '../general/queries';
 import { useState } from "react";
 
-function CreateNew({ type, fields, newObjInit, setArr, isSimpleArrObjects }) {
+function CreateNew({ type, fields, newObjInit, setArr, isSimpleArrObjects, setMessage }) {
 
     const [displayFormNew, setDisplayFormNew] = useState(false);
     const [newObj, setNewObj] = useState(newObjInit);
-    const [error, setError] = useState(null);
     const [createdObj, setCreatedObj] = useState(null); // State to hold the created object
 
     async function create(e) {
@@ -23,14 +22,15 @@ function CreateNew({ type, fields, newObjInit, setArr, isSimpleArrObjects }) {
                 }));
             }
             setNewObj(newObjInit);
-        } catch (e) {
-            setError(e);
+            setMessage({txt: `A new ${type.slice(0, -1)} was added successfully`, className: 'message'})
+        } 
+        catch (e) {
+            setMessage({txt: e.message, class: 'error'})
         }
     }
 
     return (
         <div>
-            {error && <div>{error}</div>}
             {createdObj &&<>
                 <div>Newly Created Object:</div>
                 {Object.keys(createdObj).map((key)=><div key={key}>

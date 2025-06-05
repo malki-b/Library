@@ -1,20 +1,17 @@
-import { useState } from 'react';
-import {PUT} from '../general/queries'
-function Edit({ obj, arrObjs, setArrObjs, type, displayFields, isSimpleArrObjects }) {
-
-        const [error, setError] = useState(null)
-    
+import { PUT } from '../general/queries'
+function Edit({ obj, arrObjs, setArrObjs, type, displayFields, isSimpleArrObjects, setMessage }) {
 
     async function saveChanges() {
         const object = obj
         delete object.isEditState
-        try{
-        await PUT(`http://localhost:3000/${type}`, object)
+        try {
+            await PUT(`http://localhost:3000/${type}`, object)
+            setObjsField('isEditState', false, false, true)
+            setMessage({txt: `${type.slice(0, -1)} ${object.id} was updated succeessfully`})
         }
-        catch(e){
-            setError(e)
+        catch (e) {
+            setMessage({ txt: e.message, className: 'error' })
         }
-        setObjsField('isEditState', false, false, true)
     }
 
     function setObjsField(field, value, isToChangeAll = true, isToChangeSearch = true) {
@@ -41,7 +38,6 @@ function Edit({ obj, arrObjs, setArrObjs, type, displayFields, isSimpleArrObject
 
     return (
         <>
-                {error && <div>{error}</div>}
             <div>
                 <button onClick={() => setObjsField('isEditState', !obj.isEditState, false, true)}>✏️</button>
                 {displayFields.map((field, i) =>
@@ -57,15 +53,15 @@ function Edit({ obj, arrObjs, setArrObjs, type, displayFields, isSimpleArrObject
                         </div>
                         :
                         <>
-                        <span>{field}:</span>
-                        <span>{obj[field]}</span>
+                            <span>{field}:</span>
+                            <span>{obj[field]}</span>
 
                         </>
                     }
                 </div>))}
             </div>
             {type == 'todos' &&
-                <input type="checkbox"  onChange={() => setObjsField('completed', !obj.completed)} defaultChecked={obj.completed}/>}
+                <input type="checkbox" onChange={() => setObjsField('completed', !obj.completed)} defaultChecked={obj.completed} />}
             {obj.isEditState &&
                 <button onClick={saveChanges} >save</button>}
         </>

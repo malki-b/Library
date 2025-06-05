@@ -87,14 +87,15 @@ async function sendEmail(req, res)
         text: req.body.message,
     };
 
-    console.log(mailOptions);
     
 
     try {
         await transporter.sendMail(mailOptions);
         console.log('Email sent successfully!');
-    } catch (error) {
-        console.error('Error sending email:', error);
+        res.json('Email was sent successfully')
+    } catch (e) {
+        console.error('Error sending email:', e);
+        res.status(500).json({error:e})
     }
 }
 

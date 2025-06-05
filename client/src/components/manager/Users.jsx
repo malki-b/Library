@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext} from 'react';
-import {GET} from '../general/queries'
+import React, { useState, useEffect, useContext } from 'react';
+import { GET } from '../general/queries'
 import CreateNew from '../acts/CreateNew';
 import Sort from '../acts/Sort';
 import Search from '../acts/Search';
@@ -8,11 +8,13 @@ import Edit from '../acts/Edit';
 import { Context } from "../general/Routers";
 import { Navigate } from 'react-router-dom';
 import Nav from './Nav';
+import FilterButton from '../acts/FilterButton';
 function Users() {
   const [users, setUsers] = useState({ all: [], search: [] });
-  const [findFieldsVal, setFindFieldsVal] = useState({ id: "", name: "", email: "", address: "", role: "", numOfFamilyMembers:"", debt:"" })
-  const [error, setError] = useState(null)
-  const [ user ] = useContext(Context)
+  const [findFieldsVal, setFindFieldsVal] = useState({ id: "", name: "", email: "", address: "", role: "", numOfFamilyMembers: "", debt: "" })
+  const [message, setMessage] = useState(null)
+
+  const [user] = useContext(Context)
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -26,24 +28,29 @@ function Users() {
 
       }
       catch (e) {
-        setError(e.message)
+        setMessage({ txt: e.message, className: 'error' })
+
       }
     }
     fetchUsers();
   }, []);
 
   return (
-    user.role == 'manager' ?
+    user && user.role == 'manager' ?
       <>
-      <Nav/>
+        <Nav />
         {Object.values(findFieldsVal).every(field => field === '') &&
-          <CreateNew type='Users' fields={['name','email','address','role','numOfFamilyMembers', 'debt']} newObjInit={{ }}  setArr={setUsers} isSimpleArrObjects={false}/>}
+          <CreateNew type='Users' fields={['name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']} newObjInit={{}} setArr={setUsers} isSimpleArrObjects={false} setMessage={setMessage} />}
         <div>
           <h1>All Users</h1>
-          {error && <div>{error}</div>}
-
-          <Sort arrObjs={users} setArrObjs={setUsers} sortFields = {['id','name','email','address','role','numOfFamilyMembers','debt']}/>
-          <Search arrObjs={users} setArrObjs={setUsers} fields={['id','name','email','address','role','numOfFamilyMembers','debt']} findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false}/>
+          {message && <div>
+            <span className={message.className}>{message.txt}</span>
+            <button onClick={() => setMessage(null)}>❌</button>
+          </div>}
+          <FilterButton setArrObjs={setUsers} btnTxt={'all users'} func={() => true} />
+          <FilterButton setArrObjs={setUsers} btnTxt={'users in debt'} func={(user) => user.debt > 0} />
+          <Sort arrObjs={users} setArrObjs={setUsers} sortFields={['id', 'name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']} />
+          <Search arrObjs={users} setArrObjs={setUsers} fields={['id', 'name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']} findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
           {users.search.length == 0
             ?
             <p className='noResaults'> no resaults </p >
@@ -54,8 +61,8 @@ function Users() {
                   <div className='userItem'>
                     <p>{user.id}</p>
                     <p>{user.role}</p>
-                    <Edit obj={user} arrObjs={users} setArrObjs={setUsers} type='users' displayFields={['name','email','address','numOfFamilyMembers','debt']} isSimpleArrObjects={false}/>
-                    <Delete id={user.id} type='users' setArrObjs={setUsers} isSimpleArrObjects={false}/>
+                    <Edit obj={user} arrObjs={users} setArrObjs={setUsers} type='users' displayFields={['name', 'email', 'address', 'numOfFamilyMembers', 'debt']} isSimpleArrObjects={false} setMessage={setMessage} />
+                    <Delete id={user.id} type='users' setArrObjs={setUsers} isSimpleArrObjects={false} setMessage={setMessage} />
                   </div>
                 </li>
               ))}
@@ -64,7 +71,7 @@ function Users() {
 
         </div>
       </>
-      : <Navigate to='/subscription/home' />
+      : <Navigate to='/home' />
   );
 }
 

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext} from 'react';
-import {GET} from '../general/queries'
+import React, { useState, useEffect, useContext } from 'react';
+import { GET } from '../general/queries'
 import CreateNew from '../acts/CreateNew';
 import Sort from '../acts/Sort';
 import Search from '../acts/Search';
@@ -10,9 +10,9 @@ import { Navigate } from 'react-router-dom';
 import Nav from './Nav';
 function Books() {
   const [books, setBooks] = useState({ all: [], search: [] });
-  const [findFieldsVal, setFindFieldsVal] = useState({ id: "", name: "", authorName: "", category: "", shelf: "", isAvailable:"" })
-  const [error, setError] = useState(null)
-  const [ user ] = useContext(Context)
+  const [findFieldsVal, setFindFieldsVal] = useState({ id: "", name: "", authorName: "", category: "", shelf: "", isAvailable: "" })
+  const [message, setMessage] = useState(null)
+  const [user] = useContext(Context)
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -26,24 +26,27 @@ function Books() {
 
       }
       catch (e) {
-        setError(e.message)
+        setMessage({ txt: e.message, className: 'error' })
       }
     }
     fetchBooks();
   }, []);
 
   return (
-    user.role == 'manager' ?
+    user && user.role == 'manager' ?
       <>
-      <Nav/>
+        <Nav />
         {Object.values(findFieldsVal).every(field => field === '') &&
-          <CreateNew type='Books' fields={['name','authorName','category','img','cost','shelf']} newObjInit={{ }} setArr={setBooks} isSimpleArrObjects={false}/>}
+          <CreateNew type='Books' fields={['name', 'authorName', 'category', 'img', 'cost', 'shelf']} newObjInit={{}} setArr={setBooks} isSimpleArrObjects={false} setMessage={setMessage}/>}
         <div>
           <h1>All Books</h1>
-          {error && <div>{error}</div>}
+          {message && <div>
+            <span className={message.className}>{message.txt}</span>
+            <button onClick={() => setMessage(null)}>❌</button>
+          </div>}
 
-          <Sort arrObjs={books} setArrObjs={setBooks} sortFields = {['id', 'name', 'authorName','category','shelf','isAvailable']}/>
-          <Search arrObjs={books} setArrObjs={setBooks} fields={['id', 'name', 'authorName','category','shelf','isAvailable']} findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false}/>
+          <Sort arrObjs={books} setArrObjs={setBooks} sortFields={['id', 'name', 'authorName', 'category', 'shelf', 'isAvailable']} />
+          <Search arrObjs={books} setArrObjs={setBooks} fields={['id', 'name', 'authorName', 'category', 'shelf', 'isAvailable']} findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
           {books.search.length == 0
             ?
             <p className='noResaults'> no resaults </p >
@@ -54,9 +57,9 @@ function Books() {
                   <div className='bookItem'>
                     <p>{book.id}</p>
                     <p>{book.isAvailable}</p>
-                    <img src={book.img} alt={book.name} width="100" height="80"/>
-                    <Edit obj={book} arrObjs={books} setArrObjs={setBooks} type='books' displayFields={['name','authorName','category','img', 'cost','shelf']} isSimpleArrObjects={false}/>
-                    <Delete id={book.id} type='books' setArrObjs={setBooks} isSimpleArrObjects={false}/>
+                    <img src={book.img} alt={book.name} width="100" height="80" />
+                    <Edit obj={book} arrObjs={books} setArrObjs={setBooks} type='books' displayFields={['name', 'authorName', 'category', 'img', 'cost', 'shelf']} isSimpleArrObjects={false} setMessage={setMessage}/>
+                    <Delete id={book.id} type='books' setArrObjs={setBooks} isSimpleArrObjects={false} setMessage={setMessage}/>
                   </div>
                 </li>
               ))}
@@ -65,7 +68,7 @@ function Books() {
 
         </div>
       </>
-      : <Navigate to='/subscription/home' />
+      : <Navigate to='/home' />
   );
 }
 

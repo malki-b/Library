@@ -23,7 +23,6 @@ async function addUser(user) {
         'INSERT INTO users(name, email, address, role, numOfFamilyMembers, debt) VALUES (?, ?, ?, ?, ?, ?)',
         [name, email, address, role, numOfFamilyMembers, debt]
     );
-    console.log(user)
     return result.insertId;
 }
 

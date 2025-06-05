@@ -1,33 +1,32 @@
-import {DELETE} from '../general/queries'
-import { useState } from 'react';
+import { DELETE } from '../general/queries'
 
-function Delete({ id, type, setArrObjs, isSimpleArrObjects }) {
+function Delete({ id, type, setArrObjs, isSimpleArrObjects, setMessage }) {
 
-        const [error, setError] = useState(null)
-    
+
     async function deleteObj() {
-        try{
+        try {
             await DELETE(`http://localhost:3000/${type}/${id}`);
+
+            if (isSimpleArrObjects)
+                setArrObjs(prevObjsArr => prevObjsArr.filter(object => object.id != id))
+            else
+                setArrObjs(prevObjsArr => {
+                    return {
+                        all: prevObjsArr.all.filter(object => object.id != id),
+                        search: prevObjsArr.search.filter(object => object.id != id)
+                    }
+                })
+            setMessage({txt: `${type.slice(0, -1)} ${id} was deleted succeessfully`})
         }
-        catch(e){
-            setError(e)
+        catch (e) {
+            setMessage({txt: e.message, className:'error'})
         }
-        if (isSimpleArrObjects)
-            setArrObjs(prevObjsArr => prevObjsArr.filter(object => object.id != id))
-        else
-            setArrObjs(prevObjsArr => {
-                return {
-                    all: prevObjsArr.all.filter(object => object.id != id),
-                    search: prevObjsArr.search.filter(object => object.id != id)
-                }
-            })
     }
     return (
         <div>
-        {error && <div>{error}</div>}
-        <button onClick={deleteObj} >🧺</button>
+            <button onClick={deleteObj} >🧺</button>
         </div>
-        
+
     )
 }
 export default Delete
