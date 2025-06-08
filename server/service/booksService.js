@@ -1,6 +1,4 @@
 import pool from '../../DB/createConnection.js';
-import express from 'express';
-const router = express.Router();
 
 async function getAllBooks() {
     const [books] = await pool.query("SELECT b.*, CASE WHEN EXISTS (SELECT 1 FROM lends l WHERE l.bookId = b.id AND l.returnDate IS NULL) THEN 'lent' ELSE 'available' END AS isAvailable FROM books b;");

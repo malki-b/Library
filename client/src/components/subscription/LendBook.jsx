@@ -1,7 +1,10 @@
+import Nav from "./Nav"
+
 function LendBook(){
 return(
     <>
-    <h1>lendBook</h1>
+    <Nav />
+    <h1>lend Book</h1>
     </>
 )
 }

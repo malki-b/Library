@@ -1,6 +1,4 @@
 import pool from '../../DB/createConnection.js';
-import express from 'express';
-const router = express.Router();
 
 async function getAllLends(queryParams) {
     let query = `SELECT l.id AS id,
@@ -13,18 +11,19 @@ async function getAllLends(queryParams) {
         FROM lends l
             JOIN users u ON l.subscriptionId = u.id
             JOIN books b ON l.bookId = b.id
-        WHERE 1=1;`;
+        WHERE 1=1`;
     const values = [];
     Object.keys(queryParams).forEach(key => {
         query += ` AND ${key} = ?`;
-        values.push(queryParams[key]);
+        const value = isNaN(queryParams[key]) ? queryParams[key] : Number(queryParams[key]);
+        values.push(value);
     });
-    const [lends] = await pool.query(query);
+    const [lends] = await pool.query(query, values);
     return lends;
 }
 
 async function addLend(lend) {
-    const { subscriptionId, bookId, lendDate, returnDate } = lend;
+    const {subscriptionId, bookId, lendDate, returnDate} = lend;
     const [result] = await pool.query(
         'INSERT INTO lends (subscriptionId, bookId, lendDate, returnDate) VALUES (?, ?, ?, ?)',
         [subscriptionId, bookId, lendDate, returnDate]

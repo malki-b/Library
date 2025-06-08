@@ -2,16 +2,21 @@ import { useNavigate } from "react-router-dom";
 
 export default function Nav() {
     const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem("currentUser");
+        navigate("/home", { replace: true });
+    };
+
     return (
         <nav style={{ marginBottom: "20px" }} className="nav">
             <button onClick={() => navigate("/home")}>Home</button>
-            <button onClick={() => navigate("/info")}>Info</button>
-            <button onClick={() => navigate("/todos")}>Todos</button>
-            <button onClick={() => navigate("/posts")}>Posts</button>
-            <button onClick={() => {
-                localStorage.removeItem("currentUser");
-                navigate("/login");
-            }}>Logout</button>
+            <button onClick={() => navigate("/subscription/homepage")}>subscription homepage</button>
+            <button onClick={() => navigate("/subscription/lendBook")}>lend book</button>
+            <button onClick={() => navigate("/subscription/returnBook")}>return Book</button>
+            <button onClick={() => navigate("/subscription/lendsHistory")}>Lends History</button>
+            <button onClick={() => navigate("/subscription/payment")}>payment</button>
+            <button onClick={handleLogout}>Logout</button>
         </nav>
     );
 }

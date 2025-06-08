@@ -1,6 +1,4 @@
 import pool from '../../DB/createConnection.js';
-import express from 'express';
-const router = express.Router();
 
 async function getAllUsers() {
     const [users] = await pool.query("SELECT * from users");
