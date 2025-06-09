@@ -12,18 +12,25 @@ async function getAllLends(queryParams) {
             JOIN users u ON l.subscriptionId = u.id
             JOIN books b ON l.bookId = b.id
         WHERE 1=1`;
+
     const values = [];
     Object.keys(queryParams).forEach(key => {
-        query += ` AND ${key} = ?`;
-        const value = isNaN(queryParams[key]) ? queryParams[key] : Number(queryParams[key]);
-        values.push(value);
+        if (!queryParams[key] != null) {
+            query += ` AND ${key} = ?`;
+            const value = isNaN(queryParams[key]) ? queryParams[key] : Number(queryParams[key]);
+            values.push(value);
+        }
+        else {
+            query += ` AND ${key} IS NULL`;
+        }
     });
     const [lends] = await pool.query(query, values);
     return lends;
+
 }
 
 async function addLend(lend) {
-    const {subscriptionId, bookId, lendDate, returnDate} = lend;
+    const { subscriptionId, bookId, lendDate, returnDate } = lend;
     const [result] = await pool.query(
         'INSERT INTO lends (subscriptionId, bookId, lendDate, returnDate) VALUES (?, ?, ?, ?)',
         [subscriptionId, bookId, lendDate, returnDate]
@@ -33,8 +40,8 @@ async function addLend(lend) {
 
 async function updateLend(lend) {
     await pool.query(
-        'UPDATE lends SET subscriptionId = ? , bookId = ?, lendDate = ?, returnDate = ?  WHERE id = ?',
-        [lend.subscriptionId, lend.bookId, lend.lendDate, lend.returnDate, lend.id]
+        'UPDATE lends SET returnDate = NOW() WHERE id = ?',
+        [lend.id]
     );
     return { ...lend };
 }

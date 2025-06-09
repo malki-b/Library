@@ -5,8 +5,8 @@ async function getLends(req, res) {
         const lends = await lendsService.getAllLends(req.query);        
         const formattedLends = lends.map(lend => ({
             ...lend,
-            lendDate: lend.lendDate ? formatDate(new Date(lend.lendDate)) : null,
-            returnDate: lend.returnDate ? formatDate(new Date(lend.returnDate)) : null
+            lendDate: lend.lendDate && lend.lendDate!="null" ? formatDate(new Date(lend.lendDate)) : null,
+            returnDate: lend.returnDate && lend.lendDate!="null" ? formatDate(new Date(lend.returnDate)) : null
         }));
         res.json(formattedLends);
     } catch (error) {
