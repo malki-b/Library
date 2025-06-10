@@ -16,6 +16,7 @@ export default function Nav() {
             <button onClick={() => navigate("/subscription/returnBook")}>return Book</button>
             <button onClick={() => navigate("/subscription/lendsHistory")}>Lends History</button>
             <button onClick={() => navigate("/subscription/payment")}>payment</button>
+            <button onClick={() => navigate("/displayBooks")}>display books</button>
             <button onClick={handleLogout}>Logout</button>
         </nav>
     );

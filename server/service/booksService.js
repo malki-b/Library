@@ -5,6 +5,11 @@ async function getAllBooks() {
     return books;
 }
 
+async function  getBook(bookId) {
+    const [book] = await pool.query("select * from books where id = ?", [bookId])
+    return book;
+}
+
 async function addBook(book) {
     const { name, authorName, category, img, cost, shelf } = book;
     const [result] = await pool.query(
@@ -29,6 +34,7 @@ async function deleteBook(id) {
 
 export default {
     getAllBooks,
+    getBook,
     addBook,
     updateBook,
     deleteBook,

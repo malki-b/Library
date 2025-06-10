@@ -68,7 +68,7 @@ export default function Routers() {
                         }
                     />
                     <Route
-                        path="/sisplaybooks"
+                        path="/displaybooks"
                         element={
                             <DisplayBooks />
                         }

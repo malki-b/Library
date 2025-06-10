@@ -21,7 +21,6 @@ function Sort({arrObjs, setArrObjs, sortFields }) {
             <div>
                 <label htmlFor="sortBy">Sort by:</label>
                 <select name="sortBy" id="sortBy" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                    <option value="">Select a field</option>
                     {sortFields.map((field, i) => (
                         <option key={i} value={field}>{field}</option>
                     ))}
