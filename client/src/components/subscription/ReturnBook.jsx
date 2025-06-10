@@ -1,7 +1,3 @@
-
-
-
-
 import Nav from "./Nav";
 import { useState, useEffect, useContext } from 'react';
 import { GET, PUT } from '../general/queries';
@@ -53,7 +49,7 @@ function ReturnBook() {
                     search: prevState.search.filter(lend => lend.id !== selectedLendId)
                 }));
 
-                setMessage({ txt: "הספר הוחזר בהצלחה", className: 'success' });
+                setMessage({ txt: `book ${selectedLendId} was returned successfully`, className: 'success' });
             } catch (e) {
                 setMessage({ txt: e.message, className: 'error' });
             } finally {
