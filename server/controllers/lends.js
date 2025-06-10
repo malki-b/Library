@@ -10,9 +10,8 @@ async function getLends(req, res) {
         const lends = await lendsService.getLends(queryParams);  
         const formattedLends = lends.map(lend => ({
             ...lend,
-            lendDate: (lend.lendDate == null || lend.lendDate == 'null') ? null : formatDate(new Date(lend.lendDate)),
-            returnDate: (lend.returnDate == null || lend.returnDate == 'null') ? null : formatDate(new Date(lend.returnDate)),
-
+            lendDate: lend.lendDate && lend.lendDate!="null" ? formatDate(new Date(lend.lendDate)) : null,
+            returnDate: lend.returnDate && lend.lendDate!="null" ? formatDate(new Date(lend.returnDate)) : null
         }));
         res.json(formattedLends);
     } catch (error) {

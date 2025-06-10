@@ -1,0 +1,24 @@
+.modal {
+    width: 300px; /* רוחב המודל */
+    margin: auto; /* מרכז את המודל */
+    padding: 20px; /* ריפוד פנימי */
+    background-color: white; /* צבע רקע */
+    border-radius: 8px; /* פינות מעוגלות */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* צל */
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* צבע רקע עבור overlay */
+    display: flex; /* מאפשר למרכז את המודל */
+    justify-content: center; /* מרכז אופקית */
+    align-items: center; /* מרכז אנכית */
+    position: fixed; /* מיקום קבוע */
+    top: 0; /* מיקום עליון */
+    left: 0; /* מיקום שמאלי */
+    right: 0; /* מיקום ימני */
+    bottom: 0; /* מיקום תחתון */
+}
+
+.success {
+    color: green; /* צבע ירוק */
+}

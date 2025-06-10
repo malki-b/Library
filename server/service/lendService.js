@@ -12,6 +12,7 @@ async function getLends(queryParams) {
             JOIN users u ON l.subscriptionId = u.id
             JOIN books b ON l.bookId = b.id
         WHERE 1=1`;
+
     const values = [];
     Object.keys(queryParams).forEach(key => {
         if (queryParams[key] != null) {
@@ -24,6 +25,7 @@ async function getLends(queryParams) {
     });
     const [lends] = await pool.query(query, values);
     return lends;
+
 }
 
 async function addLend(lend) {
@@ -37,8 +39,8 @@ async function addLend(lend) {
 
 async function updateLend(lend) {
     await pool.query(
-        'UPDATE lends SET subscriptionId = ? , bookId = ?, lendDate = ?, returnDate = ?  WHERE id = ?',
-        [lend.subscriptionId, lend.bookId, lend.lendDate, lend.returnDate, lend.id]
+        'UPDATE lends SET returnDate = NOW() WHERE id = ?',
+        [lend.id]
     );
     return { ...lend };
 }
