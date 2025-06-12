@@ -45,7 +45,10 @@ function Login() {
     }
 
     return (
-        <div style={{textAlign: "center", marginTop: "50px"}}>
+        <div style={{ textAlign: "center", marginTop: "50px" }}>
+            <button onClick={() => navigate('/')} style={{ marginBottom: "20px" }}>
+                Home
+            </button>
             <h1>Login</h1>
             <form onSubmit={handleLogin}>
                 <div>
@@ -70,10 +73,10 @@ function Login() {
                         />
                     </label>
                 </div>
-                <button type="submit" style={{marginTop: "20px", fontSize: "1.2rem"}}>Login</button>
+                <button type="submit" style={{ marginTop: "20px", fontSize: "1.2rem" }}>Login</button>
             </form>
             <button
-                style={{marginTop: "30px", fontSize: "1.1rem"}}
+                style={{ marginTop: "30px", fontSize: "1.1rem" }}
                 onClick={() => navigate('/signup')}
             >
                 להרשמה

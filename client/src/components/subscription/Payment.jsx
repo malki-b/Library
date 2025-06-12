@@ -1,3 +1,35 @@
+// import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"; 
+// function App()
+//  {
+//      return (
+//          <PayPalScriptProvider options={{ "client-id": "YOUR_CLIENT_ID" }}>
+//      <PayPalButtons createOrder={(data, actions) => { return actions.order.create(
+//         { purchase_units:
+//              [{ amount: { value: '0.01', // סכום התשלום 
+//              }, }], }); }}
+//               onApprove={(data, actions) =>
+//                  { return 
+//                     actions.order.capture().then((details) => { console.log('Transaction completed by ' + details.payer.name.given_name); // כאן תוכל לשלוח את הפרטים לשרת שלך 
+//               }); }} /> </PayPalScriptProvider> ); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import Nav from "../manager/Nav"
 
 function Payment(){
@@ -9,6 +41,71 @@ return(
 )
 }
 export default Payment
+
+// import React, { useEffect } from "react";
+// import Nav from "../manager/Nav";
+
+// function Payment() {
+//   useEffect(() => {
+//     // טוען את ה-SDK של PayPal
+//     const script = document.createElement("script");
+//     script.src = "https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"; // החלף ב-YOUR_CLIENT_ID שלך
+//     script.async = true;
+//     script.onload = () => {
+//       window.paypal.Buttons({
+//         createOrder: async function (data, actions) {
+//           const response = await fetch('/create-order', {
+//             method: 'post',
+//             headers: {
+//               'Content-Type': 'application/json'
+//             }
+//           });
+//           const orderData = await response.json();
+//           return orderData.id;
+//         },
+//         onApprove: async function (data, actions) {
+//           const response = await fetch(`/capture-order/${data.orderID}`, {
+//             method: 'post',
+//             headers: {
+//               'Content-Type': 'application/json'
+//             }
+//           });
+//           const captureData = await response.json();
+//           console.log('Capture result', captureData);
+//           alert('Transaction completed!');
+//         }
+//       }).render('#paypal-button-container'); // מיקום כפתור PayPal
+//     };
+//     document.body.appendChild(script);
+//   }, []);
+
+//   return (
+//     <>
+//       <Nav />
+//       <h1>Payment</h1>
+//       <div id="paypal-button-container"></div> {/* מיקום כפתור PayPal בדף */}
+//     </>
+//   );
+// }
+
+// export default Payment;
+
+
+///////////
+// const paypal = require('@paypal/checkout-server-sdk');
+
+// function environment() {
+//   return new paypal.core.SandboxEnvironment('YOUR_CLIENT_ID', 'YOUR_CLIENT_SECRET'); // השתמש ב-Sandbox עבור בדיקות
+// }
+
+// function client() {
+//   return new paypal.core.PayPalHttpClient(environment());
+// }
+
+// module.exports = { client };
+
+
+
 
 // על מנת להתממשק למערכת גבייה עבור כרטיסי אשראי, תוכל להשתמש ב-API של מערכות גבייה פופולריות. אחת מהאפשרויות החינמיות והנפוצות היא Stripe, המספקת אפשרויות גישור להיבטי גבייה ומשלוחים.
 

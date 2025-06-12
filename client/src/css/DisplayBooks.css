@@ -1,0 +1,134 @@
+/* .bookItem {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 50px; /* מרווח קטן בין הריבועים */
+    /* text-align: center;
+    width: 100%; /* שליש מהדף */
+    /* box-sizing: border-box; /* כולל padding ו-border בחישוב ה-width */
+/* }   */
+/* 
+.ul {
+    max-inline-size: none;
+    display: flex;
+    flex-wrap: wrap; /* מאפשר לריבועים לעבור לשורה הבאה */
+    /* list-style-type: none;
+    padding: 0;
+    margin: 200px;
+    justify-content: space-between; /* מרווח שווה בין הריבועים */
+    /* align-items: center;
+    align-content: center;
+    width: 100%; /* מאפשר לריבועים להתפרס על כל רוחב הדף */
+/* } */
+
+/* .noResaults {
+    text-align: center;
+    width: 100%;
+} */
+
+/*
+.ul {
+    display: flex;
+    flex-wrap: wrap; /* מאפשר לריבועים לעבור לשורה הבאה */
+    /* list-style-type: none;
+    padding: 0;
+    margin: 0 auto; /* מרכז את התוכן */
+    /* justify-content: space-between; /* מפזר את הריבועים באופן שווה */
+    /* width: 100%; מאפשר לריבועים להתפרס על כל רוחב הדף */
+/* } */
+
+/* .bookItem {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px; */
+    /* margin: 10px 0; מרווח בין שורות */
+    /* text-align: center; */
+    /* flex: 0 1 calc(80% - 20px); רוחב אחיד של שליש מהדף פחות רווח */
+    /* overflow: hidden; מונע טקסט שברח החוצה */
+/* } */
+/* 
+.noResaults {
+    text-align: center;
+    width: 100%;
+} */
+
+
+/* Homepage.css */
+
+
+
+
+/* Reset בסיסי */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* עיצוב לעמוד הבית */
+.homepage {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('/images/library.jpg'); /* שנה לפי הנתיב שלך */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* מרכז אנכי */
+  align-items: center;      /* מרכז אופקי */
+
+  color: white;
+  text-shadow: 1px 1px 5px black;
+}
+
+/* עיצוב לקבוצת הכפתורים */
+.button-group {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+button {
+  width: 200px;
+  height: 80px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+
+
+
+
+
+.ul {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* קובע 3 עמודות באותו רוחב */
+    gap: 20px; /* מרווח בין הריבועים */
+    padding: 0;
+    margin: 0; /* אין מרווחים נוספים */
+}
+
+.bookItem {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px; /* מרווח פנימי */
+    box-sizing: border-box; /* כולל את הגבול וה padding ברוחב */
+    height: 700px;
+}
+
+.bookItem img {
+    width: 100%; /* הגדרת התמונה לרוחב מלא של הריבוע */
+    height: auto; /* שומר על פרופורציות התמונה */
+}
+
+.noResaults {
+    text-align: center;
+    width: 100%;
+}
