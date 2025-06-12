@@ -16,7 +16,7 @@ function Homepage() {
           margin: "30px",
           cursor: "pointer"
         }}
-        onClick={() => navigate("/sisplaybooks")}
+        onClick={() => navigate("/displaybooks")}
       >
         BOOKS
       </button>

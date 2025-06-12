@@ -1,12 +1,18 @@
 import lendsService from '../service/lendService.js';
+import booksService from '../service/booksService.js';
 
 async function getLends(req, res) {
     try {
-        const lends = await lendsService.getAllLends(req.query);        
+        const queryParams = Object.fromEntries(
+            Object.entries(req.query).map(([key, value])=>
+            [key, value=='null' || value== '' ? null : value])
+        )
+        const lends = await lendsService.getLends(queryParams);  
         const formattedLends = lends.map(lend => ({
             ...lend,
-            lendDate: lend.lendDate ? formatDate(new Date(lend.lendDate)) : null,
-            returnDate: lend.returnDate ? formatDate(new Date(lend.returnDate)) : null
+            lendDate: (lend.lendDate == null || lend.lendDate == 'null') ? null : formatDate(new Date(lend.lendDate)),
+            returnDate: (lend.returnDate == null || lend.returnDate == 'null') ? null : formatDate(new Date(lend.returnDate)),
+
         }));
         res.json(formattedLends);
     } catch (error) {
@@ -23,8 +29,22 @@ function formatDate(date) {
 
 async function createLend(req, res) {
     try {
-        const newLend = await lendsService.addLend(req.body);
-        res.status(201).json(newLend);
+        const lend = req.body;
+        const book = await booksService.getBook(lend.bookId)
+        if (book.length == 0)
+        {
+            res.status(404).json({error: `book with id ${lend.bookId} does not exists`})
+            return
+        }
+        const pendingLend = await lendsService.getLends({bookId: lend.bookId, returnDate: null})
+        
+        if (pendingLend.length != 0)
+        {
+            res.status(409).json({error: `The book ${book[0].name} with id ${lend.bookId} already lent`})
+            return
+        }
+        await lendsService.addLend(lend);
+        res.status(201).json(`Book ${book[0].id} ${book[0].name} was lent successfully`);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

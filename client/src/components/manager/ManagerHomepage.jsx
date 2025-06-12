@@ -1,10 +1,18 @@
 import Nav from "./Nav"
-function ManagerHomepage(){
-return(
-    <>
-    <Nav/>
-    <h1>ManagerHomepage</h1>
-    </>
-)
+import { useContext } from "react"
+import { Context } from "../general/Routers"
+import { Navigate } from "react-router-dom"
+function ManagerHomepage() {
+    const [user] = useContext(Context)
+    return (
+        user?.role == 'manager'
+            ?
+            <>
+                <Nav />
+                <h1>Manager Homepage</h1>
+                <h2>hello {user.name}</h2>
+            </>
+            : <Navigate to='/home' />
+    )
 }
 export default ManagerHomepage

@@ -1,6 +1,6 @@
 import pool from '../../DB/createConnection.js';
 
-async function getAllLends(queryParams) {
+async function getLends(queryParams) {
     let query = `SELECT l.id AS id,
         u.id AS subscriptionId,
         u.name AS subscriberName,
@@ -14,19 +14,23 @@ async function getAllLends(queryParams) {
         WHERE 1=1`;
     const values = [];
     Object.keys(queryParams).forEach(key => {
-        query += ` AND ${key} = ?`;
-        const value = isNaN(queryParams[key]) ? queryParams[key] : Number(queryParams[key]);
-        values.push(value);
+        if (queryParams[key] != null) {
+            query += ` AND ${key} = ?`;
+            values.push(queryParams[key]);
+        }
+        else{
+            query += `AND ${key} is null`
+        }
     });
     const [lends] = await pool.query(query, values);
     return lends;
 }
 
 async function addLend(lend) {
-    const {subscriptionId, bookId, lendDate, returnDate} = lend;
+    const { subscriptionId, bookId } = lend;
     const [result] = await pool.query(
-        'INSERT INTO lends (subscriptionId, bookId, lendDate, returnDate) VALUES (?, ?, ?, ?)',
-        [subscriptionId, bookId, lendDate, returnDate]
+        'INSERT INTO lends (subscriptionId, bookId, lendDate) VALUES (?, ?, NOW())',
+        [subscriptionId, bookId]
     );
     return { id: result.insertId, ...lend };
 }
@@ -45,7 +49,7 @@ async function deleteLend(id) {
 }
 
 export default {
-    getAllLends,
+    getLends,
     addLend,
     updateLend,
     deleteLend,
