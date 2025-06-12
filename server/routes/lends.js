@@ -6,6 +6,7 @@ lendsRouter.use(express.json())
 
 lendsRouter.get('/', lendsController.getLends);
 lendsRouter.post('/', lendsController.createLend);
+lendsRouter.put('/:id', lendsController.updateLend);
 lendsRouter.put('/', lendsController.updateLend);
 lendsRouter.delete('/:id', lendsController.deleteLend);
 
