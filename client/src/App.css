@@ -5,6 +5,18 @@
   text-align: center;
 }
 
+
+html, body, #root {
+  height: 100%;
+  
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* זה מבטל את הגלילה */
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

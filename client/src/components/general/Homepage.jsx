@@ -6,32 +6,35 @@ function Homepage() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Home</h1>
-      <button
-        style={{
-          width: "200px",
-          height: "80px",
-          fontSize: "2rem",
-          margin: "30px",
-          cursor: "pointer"
-        }}
-        onClick={() => navigate("/displaybooks")}
-      >
-        BOOKS
-      </button>
-      <button
-        style={{
-          width: "200px",
-          height: "80px",
-          fontSize: "2rem",
-          margin: "30px",
-          cursor: "pointer"
-        }}
-        onClick={() => navigate("/login")}
-      >
-        LOGIN
-      </button>
+    <div className="homepage" style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Welcome to our library</h1>
+      <h2>Information desk and self-service loan</h2>
+      <div className="button-group">
+        <button
+          style={{
+            width: "200px",
+            height: "80px",
+            fontSize: "2rem",
+            margin: "30px",
+            cursor: "pointer"
+          }}
+          onClick={() => navigate("/displaybooks")}
+        >
+          BOOKS
+        </button>
+        <button
+          style={{
+            width: "200px",
+            height: "80px",
+            fontSize: "2rem",
+            margin: "30px",
+            cursor: "pointer"
+          }}
+          onClick={() => navigate("/login")}
+        >
+          LOGIN
+        </button>
+      </div>
     </div>
   );
 }
