@@ -119,7 +119,7 @@ function DisplayBooks() {
 
     return (
         <>
-            <div>
+            <div className="books-container">
                 <button onClick={() => navigate('/')}>Home</button>
                 <h1>All Books</h1>
                 {message && <div className={message.className}>
