@@ -11,26 +11,7 @@
 //                  { return 
 //                     actions.order.capture().then((details) => { console.log('Transaction completed by ' + details.payer.name.given_name); // כאן תוכל לשלוח את הפרטים לשרת שלך 
 //               }); }} /> </PayPalScriptProvider> ); }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import Nav from "../manager/Nav"
+import Nav from "./Nav"
 
 function Payment(){
 return(

@@ -37,7 +37,7 @@ export default function Routers() {
             const user = JSON.parse(localStorage.getItem("currentUser"));
             if (user) {
                 try {
-                    const currentUser = await GET(`http://localhost:3000/users/1`);
+                    const currentUser = await GET(`http://localhost:3000/users/${user.id}`);
                     if (currentUser.length > 0) {
                         setCurrentUser(currentUser[0]);
                     }

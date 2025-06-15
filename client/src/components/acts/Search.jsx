@@ -3,7 +3,7 @@ import React from "react";
 function Search({ arrObjs, setArrObjs, fields, findFieldsVal, setFindFieldsVal }) {
     
     function find() {
-        let searchObjs = [...arrObjs.all];
+        let searchObjs = [...arrObjs.filtered];
         fields.forEach(field => {
             if (findFieldsVal[field] !== '') {
                 searchObjs = searchObjs.filter(obj => filterNumbersAndStrings(obj, field));

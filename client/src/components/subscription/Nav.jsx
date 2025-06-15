@@ -11,7 +11,6 @@ export default function Nav() {
     return (
         <nav style={{ marginBottom: "20px" }} className="nav">
             <button onClick={() => navigate("/home")}>Home</button>
-            <button onClick={() => navigate("/subscription/homepage")}>subscription homepage</button>
             <button onClick={() => navigate("/subscription/lendBook")}>lend book</button>
             <button onClick={() => navigate("/subscription/returnBook")}>return Book</button>
             <button onClick={() => navigate("/subscription/lendsHistory")}>Lends History</button>

@@ -1,15 +1,18 @@
-function FilterButton({ setArrObjs,btnTxt, func }) {
-    
-     function filter() {
+function FilterButton({ setArrObjs, btnTxt, func, activeFilter, setActiveFilter }) {
+
+    function filter() {
+        setActiveFilter(btnTxt)
         setArrObjs(prevArrObjs => {
             const filteredItems = prevArrObjs.all.filter(func);
-            return { ...prevArrObjs, search: filteredItems };
+            return { ...prevArrObjs, filtered: filteredItems, search: filteredItems };
         });
     }
 
     return (
 
-            <button onClick={filter}>{btnTxt}</button>
+        <button
+            style={{ fontWeight: activeFilter === btnTxt ? 'bold' : 'normal' }}
+            onClick={filter}>{btnTxt}</button>
 
     );
 }

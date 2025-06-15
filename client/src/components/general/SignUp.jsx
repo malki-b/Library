@@ -54,7 +54,7 @@ function SignUp() {
     }
 
     return (
-        <div style={{maxWidth: "400px", margin: "50px auto", textAlign: "center"}}>
+        <div className='page'>
             <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 <div>

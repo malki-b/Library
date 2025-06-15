@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom';
 import Nav from './Nav';
 import FilterButton from '../acts/FilterButton';
 function LendsHistory() {
-    const [lends, setLends] = useState({ all: [], search: [] });
+    const [lends, setLends] = useState({ all: [], filtered: [], search: [] });
     const [findFieldsVal, setFindFieldsVal] = useState({ bookId: "", bookName: "", lendDate: "", returnDate: "" })
     const [message, setMessage] = useState(null)
     const [user] = useContext(Context)
@@ -17,6 +17,7 @@ function LendsHistory() {
                 const data = await GET(`http://localhost:3000/lends?subscriptionId=${user.id}`);
                 setLends({
                     all: data,
+                    filtered: data,
                     search: data
                 });
             } catch (e) {
@@ -32,10 +33,10 @@ function LendsHistory() {
                 <div>
                     <Nav />
                     <h1>My Lends</h1>
-                    {message && <div>
-                        <span className={message.className}>{message.txt}</span>
-                        <button onClick={() => setMessage(null)}>❌</button>
-                    </div>}
+                    {message && <div className={message.className}>
+                            <span >{message.txt}</span>
+                            <button className={message.className} onClick={() => setMessage(null)}>ok</button>
+                        </div>}
                     <FilterButton setArrObjs={setLends} btnTxt={'all lends'} func={() => true} />
                     <FilterButton setArrObjs={setLends} btnTxt={'open lends'} func={(lend) => lend.returnDate == null} />
                     <FilterButton setArrObjs={setLends} btnTxt={'open late lends'} func={(lend) => lend.returnDate == null && new Date(lend.lendDate) < new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)} />
@@ -47,13 +48,13 @@ function LendsHistory() {
                         :
                         <ul className='ul'>
                             {lends.search.map((lend, i) => (
-                                <li key={i}>
-                                    <div className='lendItem'>
-                                        {Object.keys(lend).map((field, j) => (
-                                            lend[field] && <div key={j}>{field}: {lend[field]}</div>
-                                        ))}
-                                    </div>
-                                </li>
+                                <li key={lend.id}>
+                                <img src={lend.bookImg} alt={lend.bookName} width="200px" height="200px" />
+                                <p>Book ID: {lend.bookId}</p>
+                                <p>Book Name: {lend.bookName}</p>
+                                <p>Lend Date: {lend.lendDate}</p>
+                                <p>Return Date: {lend.returnDate}</p>
+                            </li>
                             ))}
                         </ul>
 

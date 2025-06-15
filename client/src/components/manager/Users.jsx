@@ -13,6 +13,7 @@ function Users() {
   const [users, setUsers] = useState({ all: [], search: [] });
   const [findFieldsVal, setFindFieldsVal] = useState({ id: "", name: "", email: "", address: "", role: "", numOfFamilyMembers: "", debt: "" })
   const [message, setMessage] = useState(null)
+  const [activeFilter, setActiveFilter] = useState('All users')
 
   const [user] = useContext(Context)
   useEffect(() => {
@@ -21,6 +22,7 @@ function Users() {
         const data = await GET('http://localhost:3000/users');
         setUsers({
           all: data,
+          filtered: data,
           search: data.map(user => {
             return { ...user, isEditState: false }
           })
@@ -43,12 +45,12 @@ function Users() {
           <CreateNew type='Users' fields={['name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']} newObjInit={{}} setArr={setUsers} isSimpleArrObjects={false} setMessage={setMessage} />}
         <div>
           <h1>All Users</h1>
-          {message && <div>
-            <span className={message.className}>{message.txt}</span>
-            <button onClick={() => setMessage(null)}>❌</button>
+          {message && <div className={message.className}>
+            <span >{message.txt}</span>
+            <button className={message.className} onClick={() => setMessage(null)}>ok</button>
           </div>}
-          <FilterButton setArrObjs={setUsers} btnTxt={'all users'} func={() => true} />
-          <FilterButton setArrObjs={setUsers} btnTxt={'users in debt'} func={(user) => user.debt > 0} />
+          <FilterButton setArrObjs={setUsers} btnTxt={'All users'} func={() => true} activeFilter={activeFilter} setActiveFilter={setActiveFilter}/>
+          <FilterButton setArrObjs={setUsers} btnTxt={'Users in debt'} func={(user) => user.debt > 0} activeFilter={activeFilter} setActiveFilter={setActiveFilter}/>
           <Sort arrObjs={users} setArrObjs={setUsers} sortFields={['id', 'name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']} />
           <Search arrObjs={users} setArrObjs={setUsers} fields={['id', 'name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']} findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
           {users.search.length == 0

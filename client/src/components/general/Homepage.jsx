@@ -6,7 +6,7 @@ function Homepage() {
   const navigate = useNavigate();
 
   return (
-    <div className="homepage" style={{ textAlign: "center", marginTop: "50px" }}>
+    <div className="homepage">
       <h1>Welcome to our library</h1>
       <h2>Information desk and self-service loan</h2>
       <div className="button-group">

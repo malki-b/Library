@@ -6,6 +6,7 @@ async function getLends(queryParams) {
         u.name AS subscriberName,
         b.id AS bookId,
         b.name AS bookName,
+        b.img AS bookImg,
         l.lendDate,
         l.returnDate
         FROM lends l

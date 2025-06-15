@@ -45,8 +45,8 @@ function Login() {
     }
 
     return (
-        <div style={{ textAlign: "center", marginTop: "50px" }}>
-            <button onClick={() => navigate('/')} style={{ marginBottom: "20px" }}>
+        <div className='page'>
+            <button onClick={() => navigate('/')}>
                 Home
             </button>
             <h1>Login</h1>
@@ -81,7 +81,7 @@ function Login() {
             >
                 להרשמה
             </button>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            {errorMessage && <p className='error'>{errorMessage}</p>}
         </div>
     );
 }

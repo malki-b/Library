@@ -10,8 +10,8 @@ export default function Nav() {
 
     return (
         <nav style={{ marginBottom: "20px" }} className="nav">
-            <button onClick={() => navigate("/home")}>Home</button>
-            <button onClick={() => navigate("/manager/home")}>manager homepage</button>
+            <button onClick={() => navigate("/home")}>home</button>
+            <button onClick={() => navigate("/manager/homepage")}>manager home</button>
             <button onClick={() => navigate("/manager/users")}>users</button>
             <button onClick={() => navigate("/manager/lends")}>lends</button>
             <button onClick={() => navigate("/manager/books")}>books</button>
