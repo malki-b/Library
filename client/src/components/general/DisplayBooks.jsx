@@ -118,7 +118,7 @@ function DisplayBooks() {
 
     return (
         <>
-            <div>
+            <div className="books-container">
                 <button onClick={() => navigate('/')}>Home</button>
                 <h1>All Books</h1>
                 {message && <div>
@@ -126,13 +126,13 @@ function DisplayBooks() {
                     <button onClick={() => setMessage(null)}>❌</button>
                 </div>}
                 <button 
-                    style={{ fontWeight: activeFilter === 'available books' ? 'bold' : 'normal' }} 
+                    style={{ fontWeight: activeFilter === 'available books' ? 'bold' : 'normal' , fontSize: '1.3rem' }} 
                     onClick={() => handleFilterButtonClick('available books', (book) => book.isAvailable === 'available')}
                 >
                     available books
                 </button>
                 <button 
-                    style={{ fontWeight: activeFilter === 'all books' ? 'bold' : 'normal' }} 
+                    style={{ fontWeight: activeFilter === 'all books' ? 'bold' : 'normal' , fontSize: '1.3rem'  }} 
                     onClick={() => handleFilterButtonClick('all books', () => true)}
                 >
                     all books

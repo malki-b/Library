@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import "./Homepage.css"; // לא חובה, רק אם תרצי עיצוב חיצוני
-
+import "../../css/Homepage.css"; // אם יש לך עיצוב מותאם אישית
 function Homepage() {
   const navigate = useNavigate();
+
+
+  
+  // הקפאת גלילה רק בדף הבית
+  useEffect(() => {
+    document.body.classList.add("no-scroll");
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, []);
+
 
   return (
     <div className="homepage" style={{ textAlign: "center", marginTop: "50px" }}>
