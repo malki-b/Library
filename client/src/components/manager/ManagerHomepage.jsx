@@ -7,11 +7,11 @@ function ManagerHomepage() {
     return (
         user?.role == 'manager'
             ?
-            <>
+            <div className="page">
                 <Nav />
                 <h1>Manager Homepage</h1>
                 <h2>hello {user.name}</h2>
-            </>
+            </div>
             : <Navigate to='/home' />
     )
 }

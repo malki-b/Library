@@ -35,7 +35,7 @@ function Books() {
 
   return (
     user && user.role == 'manager' ?
-      <>
+      <div className='page'>
         <Nav />
         {Object.values(findFieldsVal).every(field => field === '') &&
           <CreateNew type='Books' fields={['name', 'authorName', 'category', 'img', 'cost', 'shelf']} newObjInit={{}} setArr={setBooks} isSimpleArrObjects={false} setMessage={setMessage} />}
@@ -68,7 +68,7 @@ function Books() {
           }
 
         </div>
-      </>
+      </div>
       : <Navigate to='/home' />
   );
 }

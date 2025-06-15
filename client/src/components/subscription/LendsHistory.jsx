@@ -29,7 +29,7 @@ function LendsHistory() {
 
     return (
         user && user.role == 'subscription' ?
-            <>
+            <div className='page'>
                 <div>
                     <Nav />
                     <h1>My Lends</h1>
@@ -61,7 +61,7 @@ function LendsHistory() {
                     }
 
                 </div>
-            </>
+            </div>
             : <Navigate to='/home' />
     );
 }

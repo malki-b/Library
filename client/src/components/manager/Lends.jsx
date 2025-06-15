@@ -34,7 +34,7 @@ function Lends() {
 
     return (
         user && user.role == 'manager' ?
-            <>
+            <div className='page'>
                 <Nav />
                 <div>
                     <h1>All Lends</h1>
@@ -66,7 +66,7 @@ function Lends() {
                     }
 
                 </div>
-            </>
+            </div>
             : <Navigate to='/home' />
     );
 }

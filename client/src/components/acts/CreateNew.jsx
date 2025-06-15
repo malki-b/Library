@@ -1,7 +1,6 @@
 import { POST } from '../general/queries';
 import { useState } from "react";
 import Modal from 'react-modal';
-import Confirmation from './Confirmation';
 
 
 function CreateNew({ type, fields, newObjInit, setArr, isSimpleArrObjects, setMessage }) {
@@ -55,8 +54,12 @@ function CreateNew({ type, fields, newObjInit, setArr, isSimpleArrObjects, setMe
                 <button type='button' onClick={() => setIsModalOpen(true)}>ADD</button>
             </div>}
 
-            <Confirmation isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}
-                header={`Confirm adding ${type.slice(0, -1)}`} txt={`Are you sure you want to add ${type.slice(0, -1)}?`} func={create} />
+            <Modal isOpen={isModalOpen} className="modal" overlayClassName="overlay" >
+                <h2>{`Confirm adding ${type.slice(0, -1)}`}</h2>
+                <p>{`Are you sure you want to add ${type.slice(0, -1)}?`}</p>
+                <button onClick={create}>אישור</button>
+                <button onClick={() => setIsModalOpen(false)}>ביטול</button>
+            </Modal>
         </div>
     );
 }

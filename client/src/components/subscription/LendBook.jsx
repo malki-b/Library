@@ -4,8 +4,9 @@ import { Navigate } from "react-router-dom"
 import { GET, POST } from "../general/queries"
 import { useContext } from "react"
 import { Context } from "../general/Routers"
-import Confirmation from "../acts/Confirmation"
 import { useNavigate } from "react-router-dom"
+import Modal from 'react-modal';
+
 
 function LendBook() {
     const [bookId, setBookId] = useState(0)
@@ -16,13 +17,13 @@ function LendBook() {
     const navigate = useNavigate()
     async function fetchOpenLends() {
         try {
-                const data = await GET(`http://localhost:3000/lends?subscriptionId=${user?.id}&returnDate=null`);
-                setOpenLends(data);
+            const data = await GET(`http://localhost:3000/lends?subscriptionId=${user?.id}&returnDate=null`);
+            setOpenLends(data);
 
-            }
-            catch (e) {
-                setMessage({ txt: e.message, className: 'error' })
-            }
+        }
+        catch (e) {
+            setMessage({ txt: e.message, className: 'error' })
+        }
     }
     useEffect(() => {
         fetchOpenLends();
@@ -34,7 +35,7 @@ function LendBook() {
             setMessage({ txt: response, className: 'success' })
             await fetchOpenLends()
             console.log(openLends.length);
-            
+
         }
         catch (e) {
             setMessage({ txt: e.message, className: 'error' })
@@ -42,13 +43,13 @@ function LendBook() {
     }
     return (
         user?.role == 'subscription' ?
-            <>
+            <div className="page">
                 <Nav />
                 <h1>lend Book</h1>
                 {message && <div className={message.className}>
-                            <span >{message.txt}</span>
-                            <button className={message.className} onClick={() => setMessage(null)}>ok</button>
-                        </div>}
+                    <span >{message.txt}</span>
+                    <button className={message.className} onClick={() => setMessage(null)}>ok</button>
+                </div>}
                 {user.debt > 0 &&
                     <>
                         <div>You are not allowed to lent a book because you have a deby, pay the debt first</div>
@@ -71,13 +72,16 @@ function LendBook() {
                             />
                         </label>
                         <button type="button" onClick={() => setIsModalOpen(true)}>Lend</button>
-
-                        <Confirmation isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}
-                            header={'Confirm lend book'} txt={`are you sure you want to lend book ${bookId}?`} func={handleLendBook} />
+                        <Modal isOpen={isModalOpen} className="modal" overlayClassName="overlay" >
+                            <h2>{'Confirm lend book'}</h2>
+                            <p>{`are you sure you want to lend book ${bookId}?`}</p>
+                            <button onClick={handleLendBook}>אישור</button>
+                            <button onClick={() => setIsModalOpen(false)}>ביטול</button>
+                        </Modal>
                     </>
                 }
 
-            </>
+            </div>
             : <Navigate to='/home' />
 
     )

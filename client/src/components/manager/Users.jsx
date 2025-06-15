@@ -39,7 +39,7 @@ function Users() {
 
   return (
     user && user.role == 'manager' ?
-      <>
+      <div className='page'>
         <Nav />
         {Object.values(findFieldsVal).every(field => field === '') &&
           <CreateNew type='Users' fields={['name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']} newObjInit={{}} setArr={setUsers} isSimpleArrObjects={false} setMessage={setMessage} />}
@@ -72,7 +72,7 @@ function Users() {
           }
 
         </div>
-      </>
+      </div>
       : <Navigate to='/home' />
   );
 }

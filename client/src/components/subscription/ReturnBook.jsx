@@ -3,11 +3,9 @@ import { useState, useEffect, useContext } from 'react';
 import { GET, PUT } from '../general/queries';
 import { Context } from "../general/Routers";
 import { Navigate } from 'react-router-dom';
-import Modal from 'react-modal';
 import '../../css/Modal.css'
-import Confirmation from "../acts/Confirmation";
+import Modal from 'react-modal';
 
-Modal.setAppElement('#root');
 
 function ReturnBook() {
     const [lends, setLends] = useState([]);
@@ -16,17 +14,18 @@ function ReturnBook() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedLendId, setSelectedLendId] = useState(null);
 
-   useEffect(() => {
-    const fetchLends = async () => {
-        try {
-            const data = await GET(`http://localhost:3000/lends?subscriptionId=${user.id}&returnDate=null`);
-            setLends(data);
-        } catch (e) {
-            setMessage({ txt: e.message, className: 'error' });
-        }
-    };
-    fetchLends();
-}, [user.id]);
+    Modal.setAppElement('#root')
+    useEffect(() => {
+        const fetchLends = async () => {
+            try {
+                const data = await GET(`http://localhost:3000/lends?subscriptionId=${user.id}&returnDate=null`);
+                setLends(data);
+            } catch (e) {
+                setMessage({ txt: e.message, className: 'error' });
+            }
+        };
+        fetchLends();
+    }, [user.id]);
 
     const openModal = (lendId) => {
         setSelectedLendId(lendId);
@@ -53,34 +52,37 @@ function ReturnBook() {
 
     return (
         user && user.role === 'subscription' ?
-            <>
+            <div className="page">
                 <Nav />
                 <h1>ReturnBook</h1>
                 {message && <div className={message.className}>
-                            <span >{message.txt}</span>
-                            <button className={message.className} onClick={() => setMessage(null)}>ok</button>
-                        </div>}
+                    <span >{message.txt}</span>
+                    <button className={message.className} onClick={() => setMessage(null)}>ok</button>
+                </div>}
                 <div>
                     {lends.length > 0 ? (
                         <ul>
-                        {lends.map(lend => (
-                            <li key={lend.id}>
-                                <img src={lend.bookImg} alt={lend.bookName} width="200px" height="200px" />
-                                <p>Book ID: {lend.bookId}</p>
-                                <p>Book Name: {lend.bookName}</p>
-                                <p>Lend Date: {lend.lendDate}</p>
-                                <button onClick={() => openModal(lend.id)}>החזר ספר</button>
-                            </li>
-                        ))}
+                            {lends.map(lend => (
+                                <li key={lend.id}>
+                                    <img src={lend.bookImg} alt={lend.bookName} width="200px" height="200px" />
+                                    <p>Book ID: {lend.bookId}</p>
+                                    <p>Book Name: {lend.bookName}</p>
+                                    <p>Lend Date: {lend.lendDate}</p>
+                                    <button onClick={() => openModal(lend.id)}>החזר ספר</button>
+                                </li>
+                            ))}
                         </ul>
                     ) : (
                         <p className="noResults">No lends available</p>
                     )}
                 </div>
-
-                <Confirmation isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}
-                    header={'Confirm return book'} txt={'Are you sure you want to return the book?'} func={handleReturnBook}/>
-            </>
+                <Modal isOpen={isModalOpen} className="modal" overlayClassName="overlay" >
+                    <h2>{'Confirm return book'}</h2>
+                    <p>{'Are you sure you want to return the book?'}</p>
+                    <button onClick={handleReturnBook}>אישור</button>
+                    <button onClick={() => setIsModalOpen(false)}>ביטול</button>
+                </Modal>
+            </div>
             : <Navigate to='/home' />
     );
 }

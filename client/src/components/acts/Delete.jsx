@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { DELETE } from '../general/queries'
-import Confirmation from './Confirmation';
+import Modal from 'react-modal';
+
 
 function Delete({ id, type, setArrObjs, isSimpleArrObjects, setMessage }) {
-    const [isModalOpen, setIsModalOpen] =useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false)
     async function deleteObj() {
         setIsModalOpen(false)
         try {
@@ -19,17 +20,21 @@ function Delete({ id, type, setArrObjs, isSimpleArrObjects, setMessage }) {
                         search: prevObjsArr.search.filter(object => object.id != id)
                     }
                 })
-            setMessage({txt: `${type.slice(0, -1)} ${id} was deleted succeessfully`, className: 'success'})
+            setMessage({ txt: `${type.slice(0, -1)} ${id} was deleted succeessfully`, className: 'success' })
         }
         catch (e) {
-            setMessage({txt: e.message, className:'error'})
+            setMessage({ txt: e.message, className: 'error' })
         }
     }
     return (
         <div>
-            <button onClick={()=>setIsModalOpen(true)} >🧺</button>
-            <Confirmation isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}
-                header={`Confirm deleting a ${type.slice(0, -1)}`} txt={`Are you sure you want to delete ${type.slice(0, -1)} ${id}?`} func={deleteObj} />
+            <button onClick={() => setIsModalOpen(true)} >🧺</button>
+            <Modal isOpen={isModalOpen} className="modal" overlayClassName="overlay" >
+                <h2>{`Confirm deleting a ${type.slice(0, -1)}`}</h2>
+                <p>{`Are you sure you want to delete ${type.slice(0, -1)} ${id}?`}</p>
+                <button onClick={deleteObj}>אישור</button>
+                <button onClick={() => setIsModalOpen(false)}>ביטול</button>
+            </Modal>
         </div>
 
     )

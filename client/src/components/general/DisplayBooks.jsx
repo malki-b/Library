@@ -109,16 +109,8 @@ function DisplayBooks() {
         fetchBooks();
     }, []);
 
-    const handleFilterButtonClick = (buttonText, filterFunc) => {
-        setActiveFilter(buttonText);
-        setBooks(prevBooks => {
-            const filteredBooks = prevBooks.all.filter(filterFunc);
-            return { ...prevBooks, filtered: filteredBooks, search: filteredBooks };
-        });
-    };
-
     return (
-        <>
+        <div className='page'>
             <div className="books-container">
                 <button onClick={() => navigate('/')}>Home</button>
                 <h1>All Books</h1>
@@ -148,7 +140,7 @@ function DisplayBooks() {
                     </ul>
                 }
             </div>
-        </>
+        </div>
     );
 }
 

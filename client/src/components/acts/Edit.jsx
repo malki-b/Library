@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { PUT } from '../general/queries'
-import Confirmation from './Confirmation'
+import Modal from 'react-modal';
+
 function Edit({ obj, arrObjs, setArrObjs, type, displayFields, isSimpleArrObjects, setMessage }) {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -68,9 +69,13 @@ function Edit({ obj, arrObjs, setArrObjs, type, displayFields, isSimpleArrObject
                 </div>))}
             </div>
             {obj.isEditState &&
-                <button onClick={()=>setIsModalOpen(true)} >save</button>}
-                <Confirmation isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} header={`Confirm update a ${type.slice(0, -1)}`}
-                    txt={`Are you sure you want to update the ${type.slice(0, -1)} ${obj.id} details?` } func={saveChanges} />
+                <button onClick={() => setIsModalOpen(true)} >save</button>}
+            <Modal isOpen={isModalOpen} className="modal" overlayClassName="overlay" >
+                <h2>{`Confirm update a ${type.slice(0, -1)}`}</h2>
+                <p>{`Are you sure you want to update the ${type.slice(0, -1)} ${obj.id} details?`}</p>
+                <button onClick={saveChanges}>אישור</button>
+                <button onClick={() => setIsModalOpen(false)}>ביטול</button>
+            </Modal>
         </>
     )
 }

@@ -5,13 +5,14 @@ import { Navigate } from "react-router-dom"
 import Modal from 'react-modal';
 
 function SubscriptionHomepage() {
+    Modal.setAppElement('#root')
     const [user] = useContext(Context)
     const [isModalOpen, setIsModalOpen] = useState(true)
     const maxLoanBooks = user?.numOfFamilyMembers;
     return (
         user?.role == 'subscription'
             ?
-            <>
+            <div className="page">
                 <Nav />
                 <h1>Supscription Homepage</h1>
                 <h2>hello {user.name}</h2>
@@ -25,7 +26,7 @@ function SubscriptionHomepage() {
                     <p>A subscriber cannot borrow if he has a debt to the library.</p>
                     <button onClick={() => setIsModalOpen(false)}>I got</button>
                 </Modal>
-            </>
+            </div>
             : <Navigate to='/home' />
     )
 }
