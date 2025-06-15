@@ -19,23 +19,26 @@ body.no-scroll {
 /* רקע תמונה + מיקום באמצע
 .homepage {
   background-image: url('/images/library.jpg'); /* עדכני את הנתיב לפי הצורך */
-  /* background-size: cover;
+/* background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
-} */ 
+} */
 
 /* מרכז כל התוכן לגובה ורוחב */
 .homepage {
-      background-image: url('../../img/6870041.jpg'); /* עדכני את הנתיב לפי הצורך */
- background-size: cover;
-   background-position: center;
+  background-image: url('../../img/6870041.jpg');
+  /* עדכני את הנתיב לפי הצורך */
+  background-size: cover;
+  background-position: center;
 
-   display: flex;
+  display: flex;
   flex-direction: column;
-  justify-content: center; /* מרכז אנכי */
-  align-items: center;     /* מרכז אופקי */
+  justify-content: center;
+  /* מרכז אנכי */
+  align-items: center;
+  /* מרכז אופקי */
   text-align: center;
   height: 100vh;
   width: 100vw;
