@@ -41,6 +41,10 @@ function LendBook() {
             <>
                 <Nav />
                 <h1>lend Book</h1>
+                {message && <div>
+                            <span className={message.className}>{message.txt}</span>
+                            <button onClick={() => setMessage(null)}>❌</button>
+                        </div>}
                 {user.debt > 0 &&
                     <>
                         <div>You are not allowed to lent a book because you have a deby, pat the debt first</div>
@@ -48,15 +52,11 @@ function LendBook() {
                     </>
                 }
                 {user.numOfFamilyMembers <= openLends.length &&
-                    <div>You already lent {openLends.length} book, you can not lend more</div>
+                    <div>You already lent {openLends.length} books, you can not lend more</div>
                 }
                 {
                     (user.debt <= 0 && user.numOfFamilyMembers > openLends.length) &&
                     <>
-                        {message && <div>
-                            <span className={message.className}>{message.txt}</span>
-                            <button onClick={() => setMessage(null)}>❌</button>
-                        </div>}
                         <label>
                             Enter book code you want to lend:
                             <input
