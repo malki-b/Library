@@ -1,14 +1,9 @@
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const app = express();
+const express = require('express');
+const router = express.Router();
+const paypalController = require('../controllers/paypalController');
+const verifyToken = require('../middleware/verifyToken');
 
-// app.use(bodyParser.json());
+router.post('/create', verifyToken, paypalController.createPayment);
+router.post('/capture/:orderId', verifyToken, paypalController.capturePayment);
 
-// app.post('/api/paypal/confirm', (req, res) => {
-//   // כאן תוכל לאמת את התשלום עם PayPal
-//   // השתמש ב-PayPal SDK או ב-API כדי לבדוק את העסקה
-// });
-
-// app.listen(3000, () => {
-//   console.log('Server is running on port 3000');
-// });
+module.exports = router;
