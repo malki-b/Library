@@ -1,0 +1,16 @@
+@media only screen and (max-width: 600px) {
+    h1{
+        font-size: 40px;
+        margin-left: 0px;
+    }
+    ul{
+          grid-template-columns: repeat(1, 1fr);
+          justify-items: center;
+    }
+    li{
+        width: 70%;
+    }
+    img{
+        width: 50%;
+    }
+}

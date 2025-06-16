@@ -81,7 +81,6 @@ import Sort from '../acts/Sort';
 import Search from '../acts/Search';
 import FilterButton from '../acts/FilterButton';
 import { useNavigate } from "react-router-dom";
-import '../../css/DisplayBooks.css';
 
 function DisplayBooks() {
     const navigate = useNavigate();
@@ -110,7 +109,7 @@ function DisplayBooks() {
     }, []);
 
     return (
-        <div className='page'>
+        <div className='page backgroundColorPage'>
             <div className="books-container">
                 <button onClick={() => navigate('/')}>Home</button>
                 <h1>All Books</h1>
@@ -129,7 +128,7 @@ function DisplayBooks() {
                     <ul>
                         {books.search.map((book, i) => (
                             <li key={i}>
-                                <div className='bookItem'>
+                                <div className={book.isAvailable}>
                                     <img src={book.img} alt={book.name} width="200px" height="200px" />
                                     {['id', 'name', 'authorName', 'category', 'shelf', 'isAvailable'].map((field, i) =>
                                         (<p key={i}>{field}: {book[field]}</p>)

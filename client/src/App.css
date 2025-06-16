@@ -4,14 +4,13 @@
   padding: 0;
   text-align: center;
 }
- */
 
-  #root {
-   width: 100%;
-   margin: 0;
-   padding: 0;
-   text-align: center;
-   box-sizing: border-box;
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 
@@ -68,11 +67,39 @@ body {
   color: #888;
 }
 
-.page {
-  padding-top: 20px;
+.backgroundImagePage {
+  background-image: url('../../img/6870041.jpg');
+  background-size: cover;
+  background-position: center;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.backgroundColorPage {
+  background-color: pink;
+}
+
+.page {
+  padding: 10px;
   width: 100vw;
   align-content: center;
+}
+
+.whiteText {
+
+  color: white;
+  text-shadow: 1px 1px 5px black;
+}
+
+.lent img {
+  filter: grayscale(90%);
+}
+
+.lent p {
+  color: rgb(195, 194, 194);
 }
 
 .success {
@@ -82,7 +109,6 @@ body {
   margin-left: 10px;
   height: 70px;
   color: green;
-  background-color: rgb(160, 222, 160);
   border-radius: 10px;
 }
 
@@ -93,7 +119,6 @@ body {
   margin-left: 10px;
   height: 70px;
   color: red;
-  background-color: rgb(236, 159, 159);
   border-radius: 10px;
 }
 

@@ -11,11 +11,11 @@ import ManagerHomepage from "../manager/ManagerHomepage";
 import Users from "../manager/Users";
 import Books from "../manager/Books";
 import Lends from "../manager/Lends";
-import SubscriptionHomepage from "../subscription/SubscriptionHomepage";
-import LendBook from "../subscription/LendBook";
-import LendsHistory from "../subscription/LendsHistory";
-import ReturnBook from "../subscription/ReturnBook";
-import Payment from "../subscription/Payment";
+import SubscriberHomepage from "../Subscriber/SubscriberHomepage";
+import LendBook from "../subscriber/LendBook";
+import LendsHistory from "../subscriber/LendsHistory";
+import ReturnBook from "../subscriber/ReturnBook";
+import Payment from "../Subscriber/Payment";
 import ErrorNotFound from "./ErrorNotFound";
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -98,31 +98,31 @@ export default function Routers() {
                         }   
                     />  
                     <Route
-                        path="/subscription/homepage"
+                        path="/subscriber/homepage"
                         element={
-                            <SubscriptionHomepage />
+                            <SubscriberHomepage />
                         }
                     />
                     <Route
-                        path="/subscription/lendBook"
+                        path="/subscriber/lendBook"
                         element={
                             <LendBook />
                         }
                     />
                     <Route
-                        path="/subscription/lendsHistory"
+                        path="/subscriber/lendsHistory"
                         element={
                             <LendsHistory />
                         }
                     />
                     <Route
-                        path="/subscription/returnBook"
+                        path="/subscriber/returnBook"
                         element={
                             <ReturnBook />
                         }
                     />
                     <Route
-                        path="/subscription/payment"
+                        path="/subscriber/payment"
                         element={
                             <Payment />
                         }

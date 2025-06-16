@@ -5,6 +5,8 @@ import Modal from 'react-modal';
 
 function Delete({ id, type, setArrObjs, isSimpleArrObjects, setMessage }) {
     const [isModalOpen, setIsModalOpen] = useState(false)
+    Modal.setAppElement('#root')
+
     async function deleteObj() {
         setIsModalOpen(false)
         try {

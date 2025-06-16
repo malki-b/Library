@@ -5,6 +5,9 @@ import Modal from 'react-modal';
 function Edit({ obj, arrObjs, setArrObjs, type, displayFields, isSimpleArrObjects, setMessage }) {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
+    Modal.setAppElement('#root')
+
+
     async function saveChanges() {
         setIsModalOpen(false)
         const object = obj
@@ -60,11 +63,7 @@ function Edit({ obj, arrObjs, setArrObjs, type, displayFields, isSimpleArrObject
                                 name={field} />
                         </div>
                         :
-                        <>
-                            <span>{field}:</span>
-                            <span>{obj[field]}</span>
-
-                        </>
+                            <p>{field} {obj[field]}:</p>
                     }
                 </div>))}
             </div>

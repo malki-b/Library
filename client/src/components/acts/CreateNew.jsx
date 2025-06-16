@@ -9,6 +9,7 @@ function CreateNew({ type, fields, newObjInit, setArr, isSimpleArrObjects, setMe
     const [newObj, setNewObj] = useState(newObjInit);
     const [createdObj, setCreatedObj] = useState(null); // State to hold the created object
     const [isModalOpen, setIsModalOpen] = useState(false)
+    Modal.setAppElement('#root')
 
     async function create() {
         setIsModalOpen(false)
@@ -36,14 +37,14 @@ function CreateNew({ type, fields, newObjInit, setArr, isSimpleArrObjects, setMe
 
     return (
         <div>
-            {createdObj && <>
+            {createdObj && <div className='item'>
                 <div>Newly Created Object:</div>
                 {Object.keys(createdObj).map((key) => <div key={key}>
                     <span>{key}:</span>
                     <span>{createdObj[key]}:</span>
                 </div>)}
                 <button onClick={() => setCreatedObj(null)}>❌</button>
-            </>
+            </div>
             }
             <button className={`new${type}`} onClick={() => setDisplayFormNew(true)}>📄 New {type.slice(0, -1)}</button>
             {displayFormNew && <div>

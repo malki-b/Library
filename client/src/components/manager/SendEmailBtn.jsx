@@ -7,7 +7,7 @@ export default function SendEmailBtn({ lend, setMessage }) {
 
     async function sendEmail(lend) {
         try {
-            const subscriber = await GET(`http://localhost:3000/users/${lend.subscriptionId}`)
+            const subscriber = await GET(`http://localhost:3000/users/${lend.subscriberId}`)
             if (subscriber.length == 0 || subscriber == null)
                 throw new Error('Subscriber not found')
             const emailAddress = subscriber[0].email
@@ -17,7 +17,7 @@ export default function SendEmailBtn({ lend, setMessage }) {
                 message: `Dear ${lend.subscriberName},\n\nThis is a reminder that the book "${lend.bookName}" has been borrowed for more than a month. Please return it at your earliest convenience.\n\nThank you!`,
             }
             await POST('http://localhost:3000/users/sendEmail', emailRequest)
-            setMessage({txt:'The email was sent successfully', className:'message'})
+            setMessage({txt:'The email was sent successfully', className:'success'})
         }
         catch (e) {
             setMessage({txt: e.message, className:'error'})

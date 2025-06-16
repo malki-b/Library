@@ -24,7 +24,7 @@ function SignUp() {
         const body = {
             ...form,
             numOfFamilyMembers: Number(form.numOfFamilyMembers),
-            role: "subscription",
+            role: "subscriber",
             debt: 0
         };
 
@@ -37,7 +37,7 @@ function SignUp() {
             if (res.ok) {
                 const data = await res.json();
                 console.log("SERVER RESPONSE:", data);
-                setSuccessMsg(`נרשמת בהצלחה! מספר המנוי שלך הוא: ${data.subscriptionNum}. שמור אותו כדי להתחבר.`);
+                setSuccessMsg(`נרשמת בהצלחה! מספר המנוי שלך הוא: ${data.subscriberNum}. שמור אותו כדי להתחבר.`);
                 setForm({
                     name: "",
                     email: "",
@@ -54,8 +54,8 @@ function SignUp() {
     }
 
     return (
-        <div className='page'>
-            <h1>Sign Up</h1>
+        <div className='page backgroundImagePage'>
+            <h1  className="whiteText">Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Name:<br />
@@ -102,16 +102,13 @@ function SignUp() {
                         />
                     </label>
                 </div>
-                <button type="submit" style={{marginTop:"20px", fontSize:"1.1rem"}}>Register</button>
+                <button type="submit" style={{ marginTop: "20px", fontSize: "1.1rem" }}>Register</button>
             </form>
             <button
-                style={{marginTop: "30px", fontSize: "1.1rem"}}
-                onClick={() => navigate('/login')}
-            >
-                חזרה לדף התחברות
-            </button>
-            {successMsg && <p style={{color:"green"}}>{successMsg}</p>}
-            {error && <p style={{color:"red"}}>{error}</p>}
+                style={{ marginTop: "30px", fontSize: "1.1rem" }}
+                onClick={() => navigate('/login')}>back to login</button>
+            {successMsg && <p style={{ color: "green" }}>{successMsg}</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
     );
 }

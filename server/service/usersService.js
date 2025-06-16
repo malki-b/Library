@@ -10,8 +10,8 @@ async function getUserByID(id) {
     return user;
 }
 
-async function getUserBysubscriptionNameAndSubscriptionNum(name, subscriptionNum) {
-    const [users] = await pool.query("SELECT u.* FROM users u JOIN SubscriptionNum sn ON u.id = sn.id WHERE u.name = ? AND sn.subscriptionNum = ?;", [name, subscriptionNum]);
+async function getUserBySubscriberNameAndSubscriberNum(name, subscriberNum) {
+    const [users] = await pool.query("SELECT u.* FROM users u JOIN subscriberNum sn ON u.id = sn.id WHERE u.name = ? AND sn.subscriberNum = ?;", [name, subscriberNum]);
     return users.length > 0 ? users[0] : null;;
 }
 
@@ -24,12 +24,12 @@ async function addUser(user) {
     return result.insertId;
 }
 
-async function addSubscriptionNum(userId, subscriptionNum){
+async function addSubscriberNum(userId, subscriberNum){
     await pool.query(
-        'INSERT INTO SubscriptionNum VALUES (?, ?)',
-        [userId, subscriptionNum]
+        'INSERT INTO subscriberNum VALUES (?, ?)',
+        [userId, subscriberNum]
     );
-    return subscriptionNum;
+    return subscriberNum;
 }
 
 async function updateUser(user) {
@@ -48,8 +48,8 @@ async function deleteUser(id) {
 export default {
     getAllUsers,
     addUser,
-    getUserBysubscriptionNameAndSubscriptionNum,
-    addSubscriptionNum,
+    getUserBySubscriberNameAndSubscriberNum,
+    addSubscriberNum,
     updateUser,
     deleteUser,
     getUserByID

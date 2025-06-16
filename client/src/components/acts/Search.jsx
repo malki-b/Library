@@ -5,7 +5,7 @@ function Search({ arrObjs, setArrObjs, fields, findFieldsVal, setFindFieldsVal }
     function find() {
         let searchObjs = [...arrObjs.filtered];
         fields.forEach(field => {
-            if (findFieldsVal[field] !== '') {
+            if (findFieldsVal[field] && findFieldsVal[field] !== '') {
                 searchObjs = searchObjs.filter(obj => filterNumbersAndStrings(obj, field));
             }
         });
@@ -23,7 +23,7 @@ function Search({ arrObjs, setArrObjs, fields, findFieldsVal, setFindFieldsVal }
         if (objIsNumeric && searchIsNumeric) {
             return objNumber === searchNumber;
         } else {
-            return String(objValue).includes(searchValue);
+            return String(objValue).toLowerCase().includes(searchValue.toLowerCase());
         }
     }
 

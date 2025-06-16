@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import "./Homepage.css"; // לא חובה, רק אם תרצי עיצוב חיצוני
-import "../../css/Homepage.css"; // אם יש לך עיצוב מותאם אישית
 function Homepage() {
   const navigate = useNavigate();
 
@@ -17,9 +15,9 @@ function Homepage() {
 
 
   return (
-    <div className="homepage">
-      <h1>Welcome to our library</h1>
-      <h2>Information desk and self-service loan</h2>
+    <div className="page backgroundImagePage">
+      <h1  className="whiteText">Welcome to our library</h1>
+      <h2  className="whiteText">Information desk and self-service loan</h2>
       <div className="button-group">
         <button
           style={{

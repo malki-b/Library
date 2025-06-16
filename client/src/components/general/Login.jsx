@@ -5,7 +5,7 @@ import { Context } from './Routers';
 function Login() {
     const [currentUser, setCurrentUser] = useContext(Context);
     const [name, setName] = useState("");
-    const [subscriptionNum, setSubscriptionNum] = useState("");
+    const [subscriberNum, setSubscriberNum] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ function Login() {
             const res = await fetch('http://localhost:3000/users/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, subscriptionNum })
+                body: JSON.stringify({ name, subscriberNum })
             });
             if (!res.ok) throw new Error("Server Error");
 
@@ -27,29 +27,29 @@ function Login() {
                 setCurrentUser(user);
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 setName("");
-                setSubscriptionNum("");
+                setSubscriberNum("");
 
                 if (user.role === 'manager') {
                     navigate('/manager/homepage');
-                } else if (user.role === 'subscription') {
-                    navigate('/subscription/homepage');
+                } else if (user.role === 'subscriber') {
+                    navigate('/subscriber/homepage');
                 } else {
                     setErrorMessage("Unknown user role.");
                 }
             } else {
-                setErrorMessage("Incorrect name or subscription number.");
+                setErrorMessage("Incorrect name or subscriber number.");
             }
         } catch (e) {
-            setErrorMessage("Incorrect name or subscription number.");
+            setErrorMessage("Incorrect name or subscriber number.");
         }
     }
 
     return (
-        <div className='page'>
+        <div className='page backgroundImagePage'>
             <button onClick={() => navigate('/')}>
                 Home
             </button>
-            <h1>Login</h1>
+            <h1  className="whiteText">Login</h1>
             <form onSubmit={handleLogin}>
                 <div>
                     <label>
@@ -64,11 +64,11 @@ function Login() {
                 </div>
                 <div>
                     <label>
-                        Subscription Number:
+                        subscriber Number:
                         <input
                             type="number"
-                            value={subscriptionNum}
-                            onChange={e => setSubscriptionNum(e.target.value)}
+                            value={subscriberNum}
+                            onChange={e => setSubscriberNum(e.target.value)}
                             required
                         />
                     </label>
@@ -79,7 +79,7 @@ function Login() {
                 style={{ marginTop: "30px", fontSize: "1.1rem" }}
                 onClick={() => navigate('/signup')}
             >
-                להרשמה
+                to sign up
             </button>
             {errorMessage && <p className='error'>{errorMessage}</p>}
         </div>

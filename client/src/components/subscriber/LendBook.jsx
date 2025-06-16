@@ -14,10 +14,12 @@ function LendBook() {
     const [openLends, setOpenLends] = useState([])
     const [user] = useContext(Context)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    Modal.setAppElement('#root')
+
     const navigate = useNavigate()
     async function fetchOpenLends() {
         try {
-            const data = await GET(`http://localhost:3000/lends?subscriptionId=${user?.id}&returnDate=null`);
+            const data = await GET(`http://localhost:3000/lends?subscriberId=${user?.id}&returnDate=null`);
             setOpenLends(data);
 
         }
@@ -31,7 +33,7 @@ function LendBook() {
     async function handleLendBook() {
         setIsModalOpen(false)
         try {
-            const response = await POST(`http://localhost:3000/lends`, { subscriptionId: user.id, bookId: bookId })
+            const response = await POST(`http://localhost:3000/lends`, { subscriberId: user.id, bookId: bookId })
             setMessage({ txt: response, className: 'success' })
             await fetchOpenLends()
             console.log(openLends.length);
@@ -42,22 +44,22 @@ function LendBook() {
         }
     }
     return (
-        user?.role == 'subscription' ?
-            <div className="page">
+        user?.role == 'subscriber' ?
+            <div className="page backgroundImagePage">
                 <Nav />
-                <h1>lend Book</h1>
+                <h1  className="whiteText">lend Book</h1>
                 {message && <div className={message.className}>
                     <span >{message.txt}</span>
                     <button className={message.className} onClick={() => setMessage(null)}>ok</button>
                 </div>}
                 {user.debt > 0 &&
                     <>
-                        <div>You are not allowed to lent a book because you have a deby, pay the debt first</div>
+                        <div  className="whiteText">You are not allowed to lent a book because you have a deby, pay the debt first</div>
                         <button onClick={() => navigate("./payment")}>payment</button>
                     </>
                 }
                 {user.numOfFamilyMembers <= openLends.length &&
-                    <div>You already lent {openLends.length} books, you can not lend more</div>
+                    <div  className="whiteText">You already lent {openLends.length} books, you can not lend more</div>
                 }
                 {
                     (user.debt <= 0 && user.numOfFamilyMembers > openLends.length) &&

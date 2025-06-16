@@ -27,13 +27,13 @@ async function createUser(req, res) {
         let user = req.body;
         const newUserId = await usersService.addUser(user);
         user.id = newUserId;
-        const subscriptionNum = Math.floor(Math.random() * 900000) + 100000;
-        user.subscriptionNum = subscriptionNum
-        await usersService.addSubscriptionNum(newUserId, encrypt(subscriptionNum))
+        const subscriberNum = Math.floor(Math.random() * 900000) + 100000;
+        user.subscriberNum = subscriberNum
+        await usersService.addSubscriberNum(newUserId, encrypt(subscriberNum))
         res.status(201).json({
     ...user,
     id: newUserId,
-    subscriptionNum 
+    subscriberNum 
 });
        
     } catch (error) {
@@ -61,7 +61,7 @@ async function deleteUser(req, res) {
 
 async function authenticateUser(req, res) {
     try {
-        const user = await usersService.getUserBysubscriptionNameAndSubscriptionNum(req.body.name, encrypt(req.body.subscriptionNum));
+        const user = await usersService.getUserBySubscriberNameAndSubscriberNum(req.body.name, encrypt(req.body.subscriberNum));
         res.json(user);
     } catch (error) {
         res.status(500).json({ error: error.message });

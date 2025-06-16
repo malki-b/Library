@@ -18,7 +18,7 @@ function ReturnBook() {
     useEffect(() => {
         const fetchLends = async () => {
             try {
-                const data = await GET(`http://localhost:3000/lends?subscriptionId=${user.id}&returnDate=null`);
+                const data = await GET(`http://localhost:3000/lends?subscriberId=${user.id}&returnDate=null`);
                 setLends(data);
             } catch (e) {
                 setMessage({ txt: e.message, className: 'error' });
@@ -51,8 +51,8 @@ function ReturnBook() {
     };
 
     return (
-        user && user.role === 'subscription' ?
-            <div className="page">
+        user && user.role === 'subscriber' ?
+            <div className="page backgroundColorPage">
                 <Nav />
                 <h1>ReturnBook</h1>
                 {message && <div className={message.className}>

@@ -2,7 +2,7 @@ import pool from '../../DB/createConnection.js';
 
 async function getLends(queryParams) {
     let query = `SELECT l.id AS id,
-        u.id AS subscriptionId,
+        u.id AS subscriberId,
         u.name AS subscriberName,
         b.id AS bookId,
         b.name AS bookName,
@@ -10,7 +10,7 @@ async function getLends(queryParams) {
         l.lendDate,
         l.returnDate
         FROM lends l
-            JOIN users u ON l.subscriptionId = u.id
+            JOIN users u ON l.subscriberId = u.id
             JOIN books b ON l.bookId = b.id
         WHERE 1=1`;
 
@@ -30,10 +30,10 @@ async function getLends(queryParams) {
 }
 
 async function addLend(lend) {
-    const { subscriptionId, bookId } = lend;
+    const { subscriberId, bookId } = lend;
     const [result] = await pool.query(
-        'INSERT INTO lends (subscriptionId, bookId, lendDate) VALUES (?, ?, NOW())',
-        [subscriptionId, bookId]
+        'INSERT INTO lends (subscriberId, bookId, lendDate) VALUES (?, ?, NOW())',
+        [subscriberId, bookId]
     );
     return { id: result.insertId, ...lend };
 }

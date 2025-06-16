@@ -4,21 +4,21 @@ import { Context } from "../general/Routers"
 import { Navigate } from "react-router-dom"
 import Modal from 'react-modal';
 
-function SubscriptionHomepage() {
+function SubscriberHomepage() {
     Modal.setAppElement('#root')
     const [user] = useContext(Context)
     const [isModalOpen, setIsModalOpen] = useState(true)
     const maxLoanBooks = user?.numOfFamilyMembers;
     return (
-        user?.role == 'subscription'
+        user?.role == 'subscriber'
             ?
-            <div className="page">
+            <div className="page backgroundImagePage">
                 <Nav />
-                <h1>Supscription Homepage</h1>
-                <h2>hello {user.name}</h2>
-                <div>You can lend {maxLoanBooks} books</div>
+                <h1  className="whiteText">Supscription Homepage</h1>
+                <h2 className="whiteText">hello {user.name}</h2>
+                <div className="whiteText">You can lend {maxLoanBooks} books</div>
                 {user.debt > 0 &&
-                    <div>You owe the library {user.debt} shekels.</div>}
+                    <div className="whiteText">You owe the library {user.debt} shekels.</div>}
                 <Modal isOpen={isModalOpen} className="modal" overlayClassName="overlay" >
                     <h2>Borrowing Policy</h2>
                     <p>A subscriber may borrow books equal to the number of people in the family.</p>
@@ -30,4 +30,4 @@ function SubscriptionHomepage() {
             : <Navigate to='/home' />
     )
 }
-export default SubscriptionHomepage
+export default SubscriberHomepage

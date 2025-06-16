@@ -35,7 +35,7 @@ function Books() {
 
   return (
     user && user.role == 'manager' ?
-      <div className='page'>
+      <div className='page backgroundColorPage'>
         <Nav />
         {Object.values(findFieldsVal).every(field => field === '') &&
           <CreateNew type='Books' fields={['name', 'authorName', 'category', 'img', 'cost', 'shelf']} newObjInit={{}} setArr={setBooks} isSimpleArrObjects={false} setMessage={setMessage} />}
@@ -55,11 +55,11 @@ function Books() {
             <ul className='ul'>
               {books.search.map((book, i) => (
                 <li key={i}>
-                  <div className='bookItem'>
+                  <div className={book.isAvailable}>
                     <p>{book.id}</p>
                     <p>{book.isAvailable}</p>
                     <img src={book.img} alt={book.name} width="100" height="80" />
-                    <Edit obj={book} arrObjs={books} setArrObjs={setBooks} type='books' displayFields={['name', 'authorName', 'category', 'img', 'cost', 'shelf']} isSimpleArrObjects={false} setMessage={setMessage} />
+                    <Edit obj={book} arrObjs={books} setArrObjs={setBooks} type='books' displayFields={['name', 'authorName', 'category', 'cost', 'shelf']} isSimpleArrObjects={false} setMessage={setMessage} />
                     <Delete id={book.id} type='books' setArrObjs={setBooks} isSimpleArrObjects={false} setMessage={setMessage} />
                   </div>
                 </li>
