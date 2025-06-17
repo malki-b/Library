@@ -37,6 +37,7 @@ function LendsHistory() {
             <div className='page backgroundColorPage'>
                 <div>
                     <Nav />
+                    <div style={{ height: "60px" }}></div>
                     <h1>My Lends History</h1>
                     {message && <div className={message.className}>
                         <span >{message.txt}</span>

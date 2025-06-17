@@ -47,19 +47,20 @@ function LendBook() {
         user?.role == 'subscriber' ?
             <div className="page backgroundImagePage">
                 <Nav />
-                <h1  className="whiteText">lend Book</h1>
+                <div style={{ height: "60px" }}></div>
+                <h1 className="whiteText">lend Book</h1>
                 {message && <div className={message.className}>
                     <span >{message.txt}</span>
                     <button className={message.className} onClick={() => setMessage(null)}>ok</button>
                 </div>}
                 {user.debt > 0 &&
                     <>
-                        <div  className="whiteText">You are not allowed to lent a book because you have a deby, pay the debt first</div>
+                        <div className="whiteText">You are not allowed to lent a book because you have a deby, pay the debt first</div>
                         <button onClick={() => navigate("./payment")}>payment</button>
                     </>
                 }
                 {user.numOfFamilyMembers <= openLends.length &&
-                    <div  className="whiteText">You already lent {openLends.length} books, you can not lend more</div>
+                    <div className="whiteText">You already lent {openLends.length} books, you can not lend more</div>
                 }
                 {
                     (user.debt <= 0 && user.numOfFamilyMembers > openLends.length) &&

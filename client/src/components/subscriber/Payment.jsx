@@ -4,12 +4,13 @@ import { useState } from "react";
 
 function Payment() {
   const [downloadReady, setDownloadReady] = useState(false);
-    console.log("PayPal CLIENT ID:", import.meta.env.VITE_PAYPAL_CLIENT_ID);
+  console.log("PayPal CLIENT ID:", import.meta.env.VITE_PAYPAL_CLIENT_ID);
 
   return (
     <>
 
       <Nav />
+      <div style={{ height: "60px" }}></div>
       <div style={{ maxWidth: '600px', margin: '0 auto', padding: '2em' }}>
         <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>רכישת מנוי לספרייה</h2>
         <p style={{ marginBottom: '1em' }}>מחיר: ₪20</p>
@@ -36,6 +37,7 @@ function Payment() {
             }}
             onApprove={(data, actions) => {
               return actions.order.capture().then((details) => {
+                //לשלוח מייל
                 alert(`התשלום הצליח על ידי ${details.payer.name.given_name}!`);
                 setDownloadReady(true);
               });
