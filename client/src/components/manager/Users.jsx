@@ -55,7 +55,7 @@ function Users() {
           <Search arrObjs={users} setArrObjs={setUsers} fields={['id', 'name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']} findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
           {users.search.length == 0
             ?
-            <p className='noResaults'> no resaults </p >
+            <p className='noResults'> no resaults </p >
             :
             <ul className='ul'>
               {users.search.map((user, i) => (

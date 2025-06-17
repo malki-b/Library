@@ -54,7 +54,7 @@ function Lends() {
                     <Search arrObjs={lends} setArrObjs={setLends} fields={['subscriberId', 'subscriberName', 'bookId', 'bookName']} findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
                     {lends.search.length == 0
                         ?
-                        <p className='noResaults'> no resaults </p >
+                        <p className='noResults'> no resaults </p >
                         :
                         <ul className='ul'>
                             {lends.search.map((lend, i) => (

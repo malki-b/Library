@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import  { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from './Routers';
-import '../../css/register.css'; 
+import '../../css/register.css';
+import { POST } from './queries';
 function Login() {
     const [currentUser, setCurrentUser] = useContext(Context);
     const [name, setName] = useState("");
@@ -14,15 +15,7 @@ function Login() {
         setErrorMessage("");
 
         try {
-            const res = await fetch('http://localhost:3000/users/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, subscriberNum })
-            });
-            if (!res.ok) throw new Error("Server Error");
-
-            const user = await res.json();
-
+            const user = await POST('http://localhost:3000/users/login', { name, subscriberNum })
             if (user && user.id && user.role) {
                 setCurrentUser(user);
                 localStorage.setItem('currentUser', JSON.stringify(user));
@@ -42,8 +35,7 @@ function Login() {
             }
         } catch (e) {
             setErrorMessage("Incorrect name or subscriber number.");
-                            setSubscriberNum('');
-
+            setSubscriberNum('');
         }
     }
 
@@ -52,7 +44,7 @@ function Login() {
             <button onClick={() => navigate('/')}>
                 Home
             </button>
-            <h1  className="whiteText">Login</h1>
+            <h1 className="whiteText">Login</h1>
             <form onSubmit={handleLogin}>
                 <div>
                     <label>

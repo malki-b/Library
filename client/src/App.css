@@ -18,14 +18,13 @@ html,
 body,
 #root {
   height: 100%;
-
+  margin: 0;
 }
 
 html,
 body {
   height: 100%;
   margin: 0;
-  /* overflow: hidden; זה מבטל את הגלילה */
 }
 
 .logo {
@@ -67,19 +66,29 @@ body {
   color: #888;
 }
 
+body:has(.backgroundImagePage) {
+  overflow: hidden;
+}
+
 .backgroundImagePage {
   background-image: url('../../img/6870041.jpg');
   background-size: cover;
   background-position: center;
-  height: 100vh;
   display: flex;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
 .backgroundColorPage {
   background-color: pink;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
 }
 
 .page {
@@ -122,7 +131,7 @@ body {
   border-radius: 10px;
 }
 
-.noResaults {
+.noResults {
   color: red;
   text-align: center;
   width: 100%;
@@ -131,9 +140,4 @@ body {
 
 .okBtn {
   background-attachment: fixed;
-}
-
-
-body:has(.backgroundImagePage){
-  overflow: hidden;
 }

@@ -50,7 +50,7 @@ function Books() {
           <Search arrObjs={books} setArrObjs={setBooks} fields={['id', 'name', 'authorName', 'category', 'shelf', 'isAvailable']} findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
           {books.search.length == 0
             ?
-            <p className='noResaults'> no resaults </p >
+            <p className='noResults'> no resaults </p >
             :
             <ul className='ul'>
               {books.search.map((book, i) => (
