@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from './Routers';
-
+import '../../css/register.css'; 
 function Login() {
     const [currentUser, setCurrentUser] = useContext(Context);
     const [name, setName] = useState("");
@@ -79,7 +79,7 @@ function Login() {
                 style={{ marginTop: "30px", fontSize: "1.1rem" }}
                 onClick={() => navigate('/signup')}
             >
-                to sign up
+                sign up
             </button>
             {errorMessage && <p className='error'>{errorMessage}</p>}
         </div>

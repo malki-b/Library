@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import '../../css/register.css';
 function SignUp() {
     const [form, setForm] = useState({
         name: "",
@@ -11,6 +11,7 @@ function SignUp() {
     const [successMsg, setSuccessMsg] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -44,6 +45,7 @@ function SignUp() {
                     address: "",
                     numOfFamilyMembers: ""
                 });
+                setShowModal(true);
             } else {
                 const data = await res.json();
                 setError(data.error || "Registration failed. Please try again.");
@@ -55,7 +57,7 @@ function SignUp() {
 
     return (
         <div className='page backgroundImagePage'>
-            <h1  className="whiteText">Sign Up</h1>
+            <h1 className="whiteText">Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Name:<br />
@@ -107,8 +109,17 @@ function SignUp() {
             <button
                 style={{ marginTop: "30px", fontSize: "1.1rem" }}
                 onClick={() => navigate('/login')}>back to login</button>
-            {successMsg && <p style={{ color: "green" }}>{successMsg}</p>}
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {/* {successMsg && <p className="success">{successMsg}</p>} */}
+            {error && <p className="error">{error}</p>}
+            {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <p>{successMsg}</p>
+                        <button onClick={() => navigate('/login')}>אישור</button>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 }
