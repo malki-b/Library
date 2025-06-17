@@ -70,8 +70,6 @@ async function authenticateUser(req, res) {
 
 async function updateUserDept(req, res) {
     try {
-        console.log(req.body.amount);
-        
         await usersService.updateUserDept(req.params.id, req.body.amount)
         res.status(200).json("user's dept was updated successfully");
     } catch (error) {
@@ -97,13 +95,11 @@ async function sendEmail(req, res) {
         text: req.body.message,
     };
 
-
-
     try {
         await transporter.sendMail(mailOptions);
-        console.log('Email sent successfully!');
         res.json('Email was sent successfully')
-    } catch (e) {
+    } 
+    catch (e) {
         res.status(500).json({ error: 'Failed to send email' })
     }
 }

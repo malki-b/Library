@@ -1,85 +1,5 @@
-/* .page {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.backgroundImagePage {
-  background-size: cover;
-  background-position: center;
-}
-
-.page h1 {
-  color: white;
-  margin-bottom: 20px;
-  font-size: 2.4rem;
-  letter-spacing: 1px;
-}
-
 form {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 30px 40px;
-  border-radius: 12px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 30px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 90%;
-  max-width: 400px;
-}
-
-form label {
-  color: white;
-  font-size: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-form input {
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  margin-top: 5px;
-  font-size: 1rem;
-  background-color: #f0f0f0;
-}
-
-button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #00c6ff;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background-color: #0072ff;
-}
-
-.whiteText {
-  color: white;
-}
-
-.error {
-  color: #ff4d4d;
-  margin-top: 15px;
-  text-align: center;
-} */
-
-
-
-form {
-  background-color: rgba(255, 255, 255, 0.85); /* רקע לבן שקוף */
+  background-color: rgba(255, 255, 255, 0.85);
   padding: 30px;
   border-radius: 16px;
   box-shadow: 0 0 20px rgba(0,0,0,0.15);
@@ -89,7 +9,7 @@ form {
   width: 90%;
   max-width: 400px;
   backdrop-filter: blur(4px);
-  border: 2px solid #ffe1ec; /* קו עדין ורוד */
+  border: 2px solid #ffe1ec; 
 }
 
 form label {
@@ -102,7 +22,7 @@ form input {
   padding: 10px 14px;
   border-radius: 10px;
   border: 1px solid #dca6b4;
-  background-color: #fff0f5; /* ורוד בהיר */
+  background-color: #fff0f5;
   font-size: 1rem;
 }
 
@@ -127,74 +47,4 @@ button:hover {
   background-color: #e85a7e;
 }
 
-.whiteText {
-  color: #ffffff;
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
-}
 
-.error {
-  color: #ff2e63;
-  font-weight: bold;
-}
-/* 
-.success {
-  color: #28a745;
-  font-weight: bold;
-} */
-
-
-.success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 2px solid #c3e6cb;
-  padding: 16px 20px;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  margin-top: 25px;
-  max-width: 420px;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-  font-weight: bold;
-  backdrop-filter: blur(2px);
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-}
-
-.modal-content {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  text-align: center;
-  max-width: 400px;
-  width: 90%;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  font-size: 1.1rem;
-}
-
-.modal-content button {
-  margin-top: 20px;
-  background-color: #ff6f91;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.modal-content button:hover {
-  background-color: #e85a7e;
-}

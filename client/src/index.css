@@ -69,14 +69,11 @@ ul {
   list-style-type: none;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* קובע 3 עמודות באותו רוחב */
   gap: 20px;
-  /* מרווח בין הריבועים */
   padding: 0;
   margin: 0;
   width: 90%;
   justify-self: center;
-  /* אין מרווחים נוספים */
 }
 
 li,
@@ -86,9 +83,7 @@ li,
   border: 1px solid #ccc;
   border-radius: 20px;
   padding: 10px;
-  /* מרווח פנימי */
   box-sizing: border-box;
-  /* כולל את הגבול וה padding ברוחב */
   height: auto;
 }
 

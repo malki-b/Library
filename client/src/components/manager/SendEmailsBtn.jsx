@@ -18,7 +18,8 @@ export default function SendEmailBtn({ lends, setMessage }) {
             const emailRequest = {
                 recipient: emailAddress,
                 subject: `Reminder: ${lend.bookName} Overdue Notice`,
-                message: `Dear ${lend.subscriberName},\n\nThis is a reminder that the book "${lend.bookName}" has been borrowed for more than a month. Please return it at your earliest convenience.\n\nThank you!`,
+                message: `Dear ${lend.subscriberName},\n\nThis is a reminder that the book "${lend.bookName}" has been borrowed for more than a month.
+                 Please return it at your earliest convenience.\n\nThank you!`,
             };
             await POST('http://localhost:3000/users/sendEmail', emailRequest);
             results.push(`Successfully sent email to: ${emailAddress}`);

@@ -7,7 +7,7 @@ function CreateNew({ type, fields, newObjInit, setArr, isSimpleArrObjects, setMe
 
     const [displayFormNew, setDisplayFormNew] = useState(false);
     const [newObj, setNewObj] = useState(newObjInit);
-    const [createdObj, setCreatedObj] = useState(null); // State to hold the created object
+    const [createdObj, setCreatedObj] = useState(null); 
     const [isModalOpen, setIsModalOpen] = useState(false)
     Modal.setAppElement('#root')
 
@@ -58,8 +58,8 @@ function CreateNew({ type, fields, newObjInit, setArr, isSimpleArrObjects, setMe
             <Modal isOpen={isModalOpen} className="modal" overlayClassName="overlay" >
                 <h2>{`Confirm adding ${type.slice(0, -1)}`}</h2>
                 <p>{`Are you sure you want to add ${type.slice(0, -1)}?`}</p>
-                <button onClick={create}>אישור</button>
-                <button onClick={() => setIsModalOpen(false)}>ביטול</button>
+                <button onClick={create}>OK</button>
+                <button onClick={() => setIsModalOpen(false)}>cancel</button>
             </Modal>
         </div>
     );

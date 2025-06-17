@@ -78,8 +78,8 @@ function LendBook() {
                         <Modal isOpen={isModalOpen} className="modal" overlayClassName="overlay" >
                             <h2>{'Confirm lend book'}</h2>
                             <p>{`are you sure you want to lend book ${bookId}?`}</p>
-                            <button onClick={handleLendBook}>אישור</button>
-                            <button onClick={() => setIsModalOpen(false)}>ביטול</button>
+                            <button onClick={handleLendBook}>OK</button>
+                            <button onClick={() => setIsModalOpen(false)}>cancel</button>
                         </Modal>
                     </>
                 }

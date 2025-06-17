@@ -72,8 +72,8 @@ function Edit({ obj, arrObjs, setArrObjs, type, displayFields, isSimpleArrObject
             <Modal isOpen={isModalOpen} className="modal" overlayClassName="overlay" >
                 <h2>{`Confirm update a ${type.slice(0, -1)}`}</h2>
                 <p>{`Are you sure you want to update the ${type.slice(0, -1)} ${obj.id} details?`}</p>
-                <button onClick={saveChanges}>אישור</button>
-                <button onClick={() => setIsModalOpen(false)}>ביטול</button>
+                <button onClick={saveChanges}>OK</button>
+                <button onClick={() => setIsModalOpen(false)}>cancel</button>
             </Modal>
         </>
     )

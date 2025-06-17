@@ -15,7 +15,6 @@ function SubscriberHomepage() {
             <div className="page backgroundImagePage">
                 <Nav />
                 <div style={{ height: "60px" }}></div>
-                {/* <h1 className="whiteText">Supscription Homepage</h1> */}
                 <h1 className="whiteText">hello {user.name}</h1>
                 <div className="whiteText">You can lend {maxLoanBooks} books</div>
                 {user.debt > 0 &&

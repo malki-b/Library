@@ -52,7 +52,8 @@ function Users() {
           <FilterButton setArrObjs={setUsers} btnTxt={'All users'} func={() => true} activeFilter={activeFilter} setActiveFilter={setActiveFilter}/>
           <FilterButton setArrObjs={setUsers} btnTxt={'Users in debt'} func={(user) => user.debt > 0} activeFilter={activeFilter} setActiveFilter={setActiveFilter}/>
           <Sort arrObjs={users} setArrObjs={setUsers} sortFields={['id', 'name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']} />
-          <Search arrObjs={users} setArrObjs={setUsers} fields={['id', 'name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']} findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
+          <Search arrObjs={users} setArrObjs={setUsers} fields={['id', 'name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']} 
+            findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
           {users.search.length == 0
             ?
             <p className='noResults'> no resaults </p >

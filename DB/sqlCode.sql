@@ -114,7 +114,7 @@ INSERT INTO books(name, authorName, category, img, cost, shelf) VALUES
     ('Yihyu Yamim', 'Blumenberd Brachi', 'adults', '../../img/books images/Yiyu Yamim2115.jpg' , 70, 15),
     ('Hayom Ani', 'Ary N', 'adults', '../../img/books images/Hayom Ani2114.jpg', 65, 15),
     ('Mystery in the Strait 1', 'Zvi Aryeh Adler', 'Comics', '../../img/books images/Mistorin Bametzar.jpg', 35, 19),
- ('From the depths of the sea', 'Zvi Aryeh Adler', 'Comics', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2020/11/2940307.jpg', 60, 19),
+    ('From the depths of the sea', 'Zvi Aryeh Adler', 'Comics', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2020/11/2940307.jpg', 60, 19),
     ('Left behind', 'R Lev', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2024/11/1090556-scaled.jpg', 16, 20),
     ('Rosie', 'Shoshi Broida', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2023/09/2238-1.jpg', 49, 20),
     ('Spirals', 'Tami Epstein', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2023/09/2220.jpg', 49, 20),
