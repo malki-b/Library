@@ -4,7 +4,7 @@ import Sort from '../acts/Sort';
 import Search from '../acts/Search';
 import FilterButton from '../acts/FilterButton';
 import { useNavigate } from "react-router-dom";
-
+import '../../css/DisplayBooks.css';
 function DisplayBooks() {
     const navigate = useNavigate();
     const [books, setBooks] = useState({ all: [], filtered: [], search: [] });
@@ -40,11 +40,14 @@ function DisplayBooks() {
                     <span >{message.txt}</span>
                     <button className={message.className} onClick={() => setMessage(null)}>ok</button>
                 </div>}
-                <FilterButton setArrObjs={setBooks} btnTxt={'available books'} func={(book) => book.isAvailable == 'available'} activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
-                <FilterButton setArrObjs={setBooks} btnTxt={'all books'} func={() => true} activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
-                <Sort arrObjs={books} setArrObjs={setBooks} sortFields={['id', 'name', 'authorName', 'category', 'shelf', 'isAvailable']} />
-                <Search arrObjs={books} setArrObjs={setBooks} fields={['id', 'name', 'authorName', 'category', 'shelf', 'isAvailable']}
-                     findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
+                 <FilterButton setArrObjs={setBooks} btnTxt={'available books'} func={(book) => book.isAvailable == 'available'} activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
+                    <FilterButton setArrObjs={setBooks} btnTxt={'all books'} func={() => true} activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
+                <div className="filter-bar">
+                   
+                    <Sort arrObjs={books} setArrObjs={setBooks} sortFields={['id', 'name', 'authorName', 'category', 'shelf', 'isAvailable']} />
+                    <Search arrObjs={books} setArrObjs={setBooks} fields={['id', 'name', 'authorName', 'category', 'shelf', 'isAvailable']}
+                        findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
+                </div>
                 {books.search.length === 0
                     ?
                     <p className='noResaults'> no results </p>
