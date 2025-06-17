@@ -113,8 +113,26 @@ INSERT INTO books(name, authorName, category, img, cost, shelf) VALUES
     ('Avak VeZahav', 'Srim Nechama', 'adults', '../../img/books images/Avak Vezahav2219.jpg', 65, 16),
     ('Yihyu Yamim', 'Blumenberd Brachi', 'adults', '../../img/books images/Yiyu Yamim2115.jpg' , 70, 15),
     ('Hayom Ani', 'Ary N', 'adults', '../../img/books images/Hayom Ani2114.jpg', 65, 15),
-    ('Mystery in the Strait 1', 'Zvi Aryeh Adler', 'Comics', '../../img/books images/Mistorin Bametzar.jpg', 35, 19);
-    
+    ('Mystery in the Strait 1', 'Zvi Aryeh Adler', 'Comics', '../../img/books images/Mistorin Bametzar.jpg', 35, 19),
+ ('From the depths of the sea', 'Zvi Aryeh Adler', 'Comics', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2020/11/2940307.jpg', 60, 19),
+    ('Left behind', 'R Lev', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2024/11/1090556-scaled.jpg', 16, 20),
+    ('Rosie', 'Shoshi Broida', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2023/09/2238-1.jpg', 49, 20),
+    ('Spirals', 'Tami Epstein', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2023/09/2220.jpg', 49, 20),
+    ('Ice embroiderer', 'Ruthi Koenig', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2021/06/1888-11.jpg', 50, 20),
+    ('Good soul', 'Ruthi Koenig', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2021/06/1723-11.jpg', 28, 20),
+    ('Peace in the farm', 'Menucha Beckerman', 'children', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2024/04/VAM_11747.jpg', 84, 21),
+    ('Dina Dee in the Garden of Unity', 'Menucha Beckerman', 'children', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2021/03/2052570.jpg', 28, 20),
+    ('Dina Dee is forbidden to talk to strangers', 'Menucha Beckerman', 'children', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2020/11/2052488.jpg', 50, 20),
+    ('Dina Dee is going to first grade', 'Menucha Beckerman', 'children', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2020/11/2052487.jpg', 50, 20),
+    ('Dina is quite careful on the roads', 'Menucha Beckerman', 'children', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2020/11/2052485.jpg', 50, 20),
+    ('Dina loves the garden very much', 'Menucha Beckerman', 'children', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2021/05/2050871.jpg', 50, 20),
+    ('Shulinka 1', 'Menucha Beckerman', 'adults', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2021/05/2110417.jpg', 83, 20),
+    ('Shulinka 2', 'Menucha Beckerman', 'adults', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2021/05/2110418.jpg', 83, 20),
+    ('Shais children adopt Tami', 'Menucha Beckerman', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2020/11/2050453-1.jpg', 60, 20),
+    ('Shais children follow the traitor A.', 'Menucha Beckerman', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2021/06/2050456-7.jpg', 60, 20),
+    ('Shais children come to the rescue', 'Menucha Beckerman', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2020/11/2050455-1.jpg', 60, 20),
+    ('Tzomet HaDrorim', 'Hertzberg Chaya','adults', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2022/05/2082.jpg', 60, 15);
+
         
 INSERT INTO lends(subscriberId, bookId, lendDate, returnDate) VALUES
     (1, 5, '2025-01-01', '2025-01-05'),

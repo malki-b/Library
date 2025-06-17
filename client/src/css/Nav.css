@@ -30,8 +30,8 @@
 
 /* כפתור פעיל */
 .nav button.active {
-  background-color: #0056b3;
+  background-color: #47927b;
   color: white;
-  border-color: #004999;
+  border-color: #377260;
 }
 
