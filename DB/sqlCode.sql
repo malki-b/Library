@@ -114,6 +114,7 @@ INSERT INTO books(name, authorName, category, img, cost, shelf) VALUES
     ('Yihyu Yamim', 'Blumenberd Brachi', 'adults', '../../img/books images/Yiyu Yamim2115.jpg' , 70, 15),
     ('Hayom Ani', 'Ary N', 'adults', '../../img/books images/Hayom Ani2114.jpg', 65, 15),
     ('Mystery in the Strait 1', 'Zvi Aryeh Adler', 'Comics', '../../img/books images/Mistorin Bametzar.jpg', 35, 19);
+    
         
 INSERT INTO lends(subscriberId, bookId, lendDate, returnDate) VALUES
     (1, 5, '2025-01-01', '2025-01-05'),
