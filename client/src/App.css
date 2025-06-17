@@ -136,3 +136,8 @@ body:has(.backgroundImagePage){
 .okBtn {
   background-attachment: fixed;
 }
+
+
+body:has(.backgroundImagePage){
+  overflow: hidden;
+}
