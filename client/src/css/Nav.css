@@ -33,7 +33,13 @@
 
 /* Active button */
 .nav button.active {
-  background-color: #0056b3;
+  background-color: #47927b;
   color: white;
+<<<<<<< HEAD
+  border-color: #377260;
+}
+
+=======
   border-color: #004999;
 }
+>>>>>>> 7ffd980f63cd8038037e37270e792213763d68d2
