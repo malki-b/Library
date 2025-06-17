@@ -31,11 +31,11 @@ async function createUser(req, res) {
         user.subscriberNum = subscriberNum
         await usersService.addSubscriberNum(newUserId, encrypt(subscriberNum))
         res.status(201).json({
-    ...user,
-    id: newUserId,
-    subscriberNum 
-});
-       
+            ...user,
+            id: newUserId,
+            subscriberNum
+        });
+
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -43,8 +43,8 @@ async function createUser(req, res) {
 
 async function updateUser(req, res) {
     try {
-        const updated = await usersService.updateUser(req.body);
-        res.status(201).json(updated);
+        await usersService.updateUser(req.body);
+        res.status(201).json('Updating was successful');
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -68,12 +68,20 @@ async function authenticateUser(req, res) {
     }
 }
 
-async function sendEmail(req, res)
-{
-   const transporter = nodemailer.createTransport({
-        host:  'smtp.gmail.com',
+async function updateUserDept(req, res) {
+    try {
+        await usersService.updateUserDept(req.params.id, req.body.amount)
+        res.status(200).json("user's dept was updated successfully");
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+async function sendEmail(req, res) {
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
         port: 587,
-        secure:false,
+        secure: false,
         auth: {
             user: process.env.EMAIL_ADDRESS,
             pass: process.env.EMAIL_PASSWORD
@@ -87,14 +95,14 @@ async function sendEmail(req, res)
         text: req.body.message,
     };
 
-    
+
 
     try {
         await transporter.sendMail(mailOptions);
         console.log('Email sent successfully!');
         res.json('Email was sent successfully')
     } catch (e) {
-        res.status(500).json({error:'Failed to send email'})
+        res.status(500).json({ error: 'Failed to send email' })
     }
 }
 
@@ -136,6 +144,7 @@ const UsersController = {
     createUser,
     updateUser,
     deleteUser,
+    updateUserDept,
     authenticateUser,
     sendEmail
 };

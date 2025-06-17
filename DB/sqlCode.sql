@@ -124,5 +124,5 @@ INSERT INTO lends(subscriberId, bookId, lendDate, returnDate) VALUES
     (10, 17, '2025-05-01', NULL),
     (14, 12, '2025-05-06', '2025-05-10'),
     (10, 15, '2025-05-10', NULL),
-    (13, 7, '2025-05-15', NULL);
+    (23, 7, '2025-05-15', NULL);
     

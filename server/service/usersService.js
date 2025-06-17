@@ -36,8 +36,13 @@ async function updateUser(user) {
     await pool.query(
         'UPDATE users SET name = ? , email = ?, address = ?, role = ?, numOfFamilyMembers = ?, debt = ? WHERE id = ?',
         [user.name, user.email, user.address, user.role, user.numOfFamilyMembers, user.debt, user.id]
-    );   
-    return user;
+    );
+}
+
+async function updateUserDept(userId, amount) {    
+    await pool.query('UPDATE users SET debt = debt + ? WHERE id = ?;',
+        [amount, userId]
+    );
 }
 
 async function deleteUser(id) {
@@ -51,6 +56,7 @@ export default {
     getUserBySubscriberNameAndSubscriberNum,
     addSubscriberNum,
     updateUser,
+    updateUserDept,
     deleteUser,
     getUserByID
 };
