@@ -34,8 +34,8 @@ function Delete({ id, type, setArrObjs, isSimpleArrObjects, setMessage }) {
             <Modal isOpen={isModalOpen} className="modal" overlayClassName="overlay" >
                 <h2>{`Confirm deleting a ${type.slice(0, -1)}`}</h2>
                 <p>{`Are you sure you want to delete ${type.slice(0, -1)} ${id}?`}</p>
-                <button onClick={deleteObj}>אישור</button>
-                <button onClick={() => setIsModalOpen(false)}>ביטול</button>
+                <button onClick={deleteObj}>OK</button>
+                <button onClick={() => setIsModalOpen(false)}>cancel</button>
             </Modal>
         </div>
 

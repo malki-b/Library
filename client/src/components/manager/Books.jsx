@@ -47,7 +47,8 @@ function Books() {
           </div>}
 
           <Sort arrObjs={books} setArrObjs={setBooks} sortFields={['id', 'name', 'authorName', 'category', 'shelf', 'isAvailable']} />
-          <Search arrObjs={books} setArrObjs={setBooks} fields={['id', 'name', 'authorName', 'category', 'shelf', 'isAvailable']} findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
+          <Search arrObjs={books} setArrObjs={setBooks} fields={['id', 'name', 'authorName', 'category', 'shelf', 'isAvailable']} 
+            findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
           {books.search.length == 0
             ?
             <p className='noResults'> no resaults </p >

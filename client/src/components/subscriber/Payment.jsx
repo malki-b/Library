@@ -4,13 +4,14 @@ import { useState } from "react";
 import { Context } from "../general/Routers";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { PUT, POST } from "../general/queries";
 
 function Payment() {
   const [downloadReady, setDownloadReady] = useState(false);
   const [user, setUser] = useContext(Context);
   const amount = user.debt;
   const navigate = useNavigate();
-  const [message, setMessage] = useState({ txt: '', className: '' });
+  const [message, setMessage] = useState(null);
 
   async function sendEmail() {
     try {
@@ -51,6 +52,10 @@ function Payment() {
     <div className="page backgroundColorPage">
       {user == null && navigate('/home')}
       <Nav />
+      {message && <div className={message.className}>
+                        <span >{message.txt}</span>
+                        <button className={message.className} onClick={() => setMessage(null)}>ok</button>
+                    </div>}
       {
         user.debt <= 0 ?
           <h2 className="whiteText">You have no debt to the library</h2>

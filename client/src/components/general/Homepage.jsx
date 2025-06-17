@@ -2,11 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 function Homepage() {
   const navigate = useNavigate();
-
-
-  
-  // הקפאת גלילה רק בדף הבית
-  useEffect(() => {
+    useEffect(() => {
     document.body.classList.add("no-scroll");
     return () => {
       document.body.classList.remove("no-scroll");

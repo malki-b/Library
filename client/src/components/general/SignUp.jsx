@@ -1,9 +1,12 @@
 import React, { useContext, useState } from 'react';
+import Modal from 'react-modal';
 import { useNavigate } from 'react-router-dom';
 import '../../css/register.css';
 import { POST } from './queries';
 import { Context } from './Routers';
+
 function SignUp() {
+    Modal.setAppElement('#root')
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -35,7 +38,7 @@ function SignUp() {
         try {
             const createdUser = await POST("http://localhost:3000/users", body)
             setCurrentUser(createdUser)
-            localStorage.setItem('currentUser',JSON.stringify( createdUser))
+            localStorage.setItem('currentUser', JSON.stringify(createdUser))
             setSuccessMsg(`You were registered successfully! your subscriber number is ${createdUser.subscriberNum}. \n You have to pay 20 NIS.`);
             setForm({
                 name: "",
@@ -104,16 +107,11 @@ function SignUp() {
             <button
                 style={{ marginTop: "30px", fontSize: "1.1rem" }}
                 onClick={() => navigate('/login')}>back to login</button>
-            {/* {successMsg && <p className="success">{successMsg}</p>} */}
             {error && <p className="error">{error}</p>}
-            {showModal && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
-                        <p>{successMsg}</p>
-                        <button onClick={() => navigate('/subscriber/payment')}>אישור</button>
-                    </div>
-                </div>
-            )}
+            <Modal isOpen={showModal} className="modal" overlayClassName="overlay" >
+                <p>{successMsg}</p>
+                <button onClick={() => navigate('/subscriber/payment')}>OK</button>
+            </Modal>
 
         </div>
     );

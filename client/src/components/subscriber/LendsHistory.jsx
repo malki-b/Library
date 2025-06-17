@@ -47,7 +47,8 @@ function LendsHistory() {
                     <FilterButton setArrObjs={setLends} btnTxt={'Open lends'} func={(lend) => lend.returnDate == null} activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
                     <FilterButton setArrObjs={setLends} btnTxt={'Open late lends'} func={isLendingOlderThanOneMonth} activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
                     <Sort arrObjs={lends} setArrObjs={setLends} sortFields={['id', 'bookId', 'bookName', 'lendDate', 'returnDate']} />
-                    <Search arrObjs={lends} setArrObjs={setLends} fields={['id', 'bookId', 'bookName']} findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
+                    <Search arrObjs={lends} setArrObjs={setLends} fields={['id', 'bookId', 'bookName']} 
+                        findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
                     {lends.search.length == 0
                         ?
                         <p className='noResults'> no resaults </p >

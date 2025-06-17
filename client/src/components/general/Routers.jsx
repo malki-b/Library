@@ -1,7 +1,5 @@
 import  { useState, createContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Home from "./Home";//
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./Homepage";
 import { GET } from "./queries";
 import Login from "./Login";
@@ -17,15 +15,6 @@ import LendsHistory from "../subscriber/LendsHistory";
 import ReturnBook from "../subscriber/ReturnBook";
 import Payment from "../Subscriber/Payment";
 import ErrorNotFound from "./ErrorNotFound";
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-
-
-// // import Home from "./Home";
-// import Todos from "./Todos";
-// import Posts from "./Posts";
-// import Info from "./Info";
-
 export const Context = createContext();
 
 export default function Routers() {

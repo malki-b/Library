@@ -1,15 +1,17 @@
 .nav {
   position: fixed;
   top: 0;
+  width: 100%;
   background-color: #ffdee2;
   padding: 10px;
   display: flex;
   gap: 10px;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  overflow-x: auto; 
+  overflow-x: auto;
   overflow-y: hidden; 
   white-space: nowrap; 
+  justify-content: center;
 }
 
 .nav button {
@@ -21,7 +23,11 @@
   cursor: pointer;
   transition: 0.3s;
   color: black;
+<<<<<<< HEAD
   white-space: normal;
+=======
+  white-space: normal; 
+>>>>>>> bb9142cd545e4a399f9c9278f0598fc26fba3bd7
 }
 
 .nav button:hover {
@@ -33,4 +39,9 @@
   background-color: #47927b;
   color: white;
   border-color: #377260;
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> bb9142cd545e4a399f9c9278f0598fc26fba3bd7
