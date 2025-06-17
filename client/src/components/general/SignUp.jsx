@@ -10,7 +10,7 @@ function SignUp() {
         address: "",
         numOfFamilyMembers: ""
     });
-    const [user, setUser] = useContext(Context)
+    const [currentUser, setCurrentUser] = useContext(Context)
     const [successMsg, setSuccessMsg] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -34,7 +34,8 @@ function SignUp() {
 
         try {
             const createdUser = await POST("http://localhost:3000/users", body)
-            setUser(createdUser)
+            setCurrentUser(createdUser)
+            localStorage.setItem('currentUser',JSON.stringify( createdUser))
             setSuccessMsg(`You were registered successfully! your subscriber number is ${createdUser.subscriberNum}. \n You have to pay 20 NIS.`);
             setForm({
                 name: "",
