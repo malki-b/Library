@@ -55,8 +55,8 @@ function LendBook() {
                 </div>}
                 {user.debt > 0 &&
                     <>
-                        <div className="whiteText">You are not allowed to lent a book because you have a deby, pay the debt first</div>
-                        <button onClick={() => navigate("./payment")}>payment</button>
+                        <div className="whiteText">You are not allowed to lent a book because you have a debt to library, pay the debt first</div>
+                        <button onClick={() => navigate("../subscriber/payment")}>payment</button>
                     </>
                 }
                 {user.numOfFamilyMembers <= openLends.length &&
