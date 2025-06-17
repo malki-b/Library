@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Context } from './Routers';
 import '../../css/register.css';
 import { POST } from './queries';
+
 function Login() {
     const [currentUser, setCurrentUser] = useContext(Context);
     const [name, setName] = useState("");
@@ -13,7 +14,6 @@ function Login() {
     async function handleLogin(event) {
         event.preventDefault();
         setErrorMessage("");
-
         try {
             const user = await POST('http://localhost:3000/users/login', { name, subscriberNum })
             if (user && user.id && user.role) {

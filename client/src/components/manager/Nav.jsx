@@ -8,7 +8,7 @@ export default function Nav() {
         navigate("/home", { replace: true });
     };
 
-        function isActive(path) {
+    function isActive(path) {
         return location.pathname === path ? 'active' : '';
     }
 

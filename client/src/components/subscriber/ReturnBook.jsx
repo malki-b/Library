@@ -27,7 +27,7 @@ function ReturnBook() {
             }
         };
         fetchLends();
-    }, [user.id]);
+    }, []);
 
     const openModal = (lendId) => {
         setSelectedLendId(lendId);
@@ -95,7 +95,6 @@ function ReturnBook() {
                     ) : (
                         <p className="noResults">No lends available</p>
                     )}
-
                 </div>
                 <Modal isOpen={isConfirmReturnBookModalOpen} className="modal" overlayClassName="overlay" >
                     <h2>{'Confirm return book'}</h2>

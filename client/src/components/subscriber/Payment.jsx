@@ -53,13 +53,13 @@ function Payment() {
       {user == null && navigate('/home')}
       <Nav />
       {message && <div className={message.className}>
-                        <span >{message.txt}</span>
-                        <button className={message.className} onClick={() => setMessage(null)}>ok</button>
-                    </div>}
+        <span >{message.txt}</span>
+        <button className={message.className} onClick={() => setMessage(null)}>ok</button>
+      </div>}
       {
         user.debt <= 0 ?
           <h2 className="whiteText">You have no debt to the library</h2>
-        :
+          :
           <>
             <div style={{ height: "60px" }}></div>
             <div style={{ maxWidth: '600px', margin: '0 auto', padding: '2em' }}>

@@ -9,13 +9,14 @@ import { Context } from "../general/Routers";
 import { Navigate } from 'react-router-dom';
 import Nav from './Nav';
 import FilterButton from '../acts/FilterButton';
+
 function Users() {
   const [users, setUsers] = useState({ all: [], search: [] });
   const [findFieldsVal, setFindFieldsVal] = useState({ id: "", name: "", email: "", address: "", role: "", numOfFamilyMembers: "", debt: "" })
   const [message, setMessage] = useState(null)
   const [activeFilter, setActiveFilter] = useState('All users')
-
   const [user] = useContext(Context)
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -27,7 +28,6 @@ function Users() {
             return { ...user, isEditState: false }
           })
         });
-
       }
       catch (e) {
         setMessage({ txt: e.message, className: 'error' })
@@ -49,10 +49,10 @@ function Users() {
             <span >{message.txt}</span>
             <button className={message.className} onClick={() => setMessage(null)}>ok</button>
           </div>}
-          <FilterButton setArrObjs={setUsers} btnTxt={'All users'} func={() => true} activeFilter={activeFilter} setActiveFilter={setActiveFilter}/>
-          <FilterButton setArrObjs={setUsers} btnTxt={'Users in debt'} func={(user) => user.debt > 0} activeFilter={activeFilter} setActiveFilter={setActiveFilter}/>
+          <FilterButton setArrObjs={setUsers} btnTxt={'All users'} func={() => true} activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
+          <FilterButton setArrObjs={setUsers} btnTxt={'Users in debt'} func={(user) => user.debt > 0} activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
           <Sort arrObjs={users} setArrObjs={setUsers} sortFields={['id', 'name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']} />
-          <Search arrObjs={users} setArrObjs={setUsers} fields={['id', 'name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']} 
+          <Search arrObjs={users} setArrObjs={setUsers} fields={['id', 'name', 'email', 'address', 'role', 'numOfFamilyMembers', 'debt']}
             findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
           {users.search.length == 0
             ?
@@ -71,7 +71,6 @@ function Users() {
               ))}
             </ul>
           }
-
         </div>
       </div>
       : <Navigate to='/home' />

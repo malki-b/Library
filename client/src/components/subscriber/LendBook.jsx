@@ -7,7 +7,6 @@ import { Context } from "../general/Routers"
 import { useNavigate } from "react-router-dom"
 import Modal from 'react-modal';
 
-
 function LendBook() {
     const [bookId, setBookId] = useState(0)
     const [message, setMessage] = useState(null)
@@ -21,7 +20,6 @@ function LendBook() {
         try {
             const data = await GET(`http://localhost:3000/lends?subscriberId=${user?.id}&returnDate=null`);
             setOpenLends(data);
-
         }
         catch (e) {
             setMessage({ txt: e.message, className: 'error' })
@@ -30,19 +28,19 @@ function LendBook() {
     useEffect(() => {
         fetchOpenLends();
     }, []);
+
     async function handleLendBook() {
         setIsModalOpen(false)
         try {
             const response = await POST(`http://localhost:3000/lends`, { subscriberId: user.id, bookId: bookId })
             setMessage({ txt: response, className: 'success' })
             await fetchOpenLends()
-            console.log(openLends.length);
-
         }
         catch (e) {
             setMessage({ txt: e.message, className: 'error' })
         }
     }
+
     return (
         user?.role == 'subscriber' ?
             <div className="page backgroundImagePage">
@@ -83,7 +81,6 @@ function LendBook() {
                         </Modal>
                     </>
                 }
-
             </div>
             : <Navigate to='/home' />
 

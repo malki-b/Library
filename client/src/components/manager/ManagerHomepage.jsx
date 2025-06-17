@@ -2,6 +2,7 @@ import Nav from "./Nav"
 import { useContext } from "react"
 import { Context } from "../general/Routers"
 import { Navigate } from "react-router-dom"
+
 function ManagerHomepage() {
     const [user] = useContext(Context)
     return (

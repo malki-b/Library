@@ -4,14 +4,14 @@ import booksService from '../service/booksService.js';
 async function getLends(req, res) {
     try {
         const queryParams = Object.fromEntries(
-            Object.entries(req.query).map(([key, value])=>
-            [key, value=='null' || value== '' ? null : value])
+            Object.entries(req.query).map(([key, value]) =>
+                [key, value == 'null' || value == '' ? null : value])
         )
-        const lends = await lendsService.getLends(queryParams);  
+        const lends = await lendsService.getLends(queryParams);
         const formattedLends = lends.map(lend => ({
             ...lend,
-            lendDate: lend.lendDate && lend.lendDate!="null" ? formatDate(new Date(lend.lendDate)) : null,
-            returnDate: lend.returnDate && lend.lendDate!="null" ? formatDate(new Date(lend.returnDate)) : null
+            lendDate: lend.lendDate && lend.lendDate != "null" ? formatDate(new Date(lend.lendDate)) : null,
+            returnDate: lend.returnDate && lend.lendDate != "null" ? formatDate(new Date(lend.returnDate)) : null
         }));
         res.json(formattedLends);
     } catch (error) {
@@ -30,16 +30,13 @@ async function createLend(req, res) {
     try {
         const lend = req.body;
         const book = await booksService.getBook(lend.bookId)
-        if (book.length == 0)
-        {
-            res.status(404).json({error: `book with id ${lend.bookId} does not exists`})
+        if (book.length == 0) {
+            res.status(404).json({ error: `book with id ${lend.bookId} does not exists` })
             return
         }
-        const pendingLend = await lendsService.getLends({bookId: lend.bookId, returnDate: null})
-        
-        if (pendingLend.length != 0)
-        {
-            res.status(409).json({error: `The book ${book[0].name} with id ${lend.bookId} already lent`})
+        const pendingLend = await lendsService.getLends({ bookId: lend.bookId, returnDate: null })
+        if (pendingLend.length != 0) {
+            res.status(409).json({ error: `The book ${book[0].name} with id ${lend.bookId} already lent` })
             return
         }
         await lendsService.addLend(lend);

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 function Homepage() {
   const navigate = useNavigate();
     useEffect(() => {
@@ -8,7 +9,6 @@ function Homepage() {
       document.body.classList.remove("no-scroll");
     };
   }, []);
-
 
   return (
     <div className="page backgroundImagePage">

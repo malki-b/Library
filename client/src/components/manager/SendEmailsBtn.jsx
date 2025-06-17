@@ -1,4 +1,3 @@
-
 import { GET, POST } from "../general/queries";
 
 export default function SendEmailBtn({ lends, setMessage }) {

@@ -8,6 +8,7 @@ import SendEmailBtn from './SendEmailBtn';
 import Nav from './Nav';
 import FilterButton from '../acts/FilterButton';
 import SendEmailsBtn from './SendEmailsBtn';
+
 function Lends() {
     const [lends, setLends] = useState({ all: [], filtered: [], search: [] });
     const [findFieldsVal, setFindFieldsVal] = useState({ bookId: "", bookName: "", subscriberId: "", subscriberName: "", lendDate: "", returnDate: "" })
@@ -23,7 +24,6 @@ function Lends() {
                     filtered: data,
                     search: data
                 });
-
             }
             catch (e) {
                 setMessage({ txt: e.message, className: 'error' })

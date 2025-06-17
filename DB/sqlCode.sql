@@ -114,27 +114,26 @@ INSERT INTO books(name, authorName, category, img, cost, shelf) VALUES
     ('Yihyu Yamim', 'Blumenberd Brachi', 'adults', '../../img/books images/Yiyu Yamim2115.jpg' , 70, 15),
     ('Hayom Ani', 'Ary N', 'adults', '../../img/books images/Hayom Ani2114.jpg', 65, 15),
     ('Mystery in the Strait 1', 'Zvi Aryeh Adler', 'Comics', '../../img/books images/Mistorin Bametzar.jpg', 35, 19),
- ('From the depths of the sea', 'Zvi Aryeh Adler', 'Comics', '../../img/books images/mim', 60, 19),
-    ('Left behind', 'R Lev', 'youth', '../../img/books images/nishar meachor', 16, 20),
-    ('Rosie', 'Shoshi Broida', 'youth', '../../books images/rozi', 49, 20),
-    ('Spirals', 'Tami Epstein', 'youth', '../../books images/spirelot', 49, 20),
-    ('Ice embroiderer', 'Ruthi Koenig', 'youth', '../../books images/rokemet bakerach', 50, 20),
-    ('Good soul', 'Ruthi Koenig', 'youth', '../../books images/neshama', 28, 20),
-    ('Peace in the farm', 'Menucha Beckerman', 'children', '../../books images/shalva', 84, 21),
-    ('Dina Dee in the Garden of Unity', 'Menucha Beckerman', 'children', '../../books images/ginat', 28, 20),
-    ('Dina Dee is forbidden to talk to strangers', 'Menucha Beckerman', 'children', '../../books images/zarim', 50, 20),
-    ('Dina Dee is going to first grade', 'Menucha Beckerman', 'children', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2020/11/2052487.jpg', 50, 20),
-    ('Dina is quite careful on the roads', 'Menucha Beckerman', 'children', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2020/11/2052485.jpg', 50, 20),
-    ('Dina loves the garden very much', 'Menucha Beckerman', 'children', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2021/05/2050871.jpg', 50, 20),
-    ('Shulinka 1', 'Menucha Beckerman', 'adults', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2021/05/2110417.jpg', 83, 20),
-    ('Shulinka 2', 'Menucha Beckerman', 'adults', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2021/05/2110418.jpg', 83, 20),
-    ('Shais children adopt Tami', 'Menucha Beckerman', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2020/11/2050453-1.jpg', 60, 20),
-    ('Shais children follow the traitor A.', 'Menucha Beckerman', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2021/06/2050456-7.jpg', 60, 20),
-    ('Shais children come to the rescue', 'Menucha Beckerman', 'youth', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2020/11/2050455-1.jpg', 60, 20),
-    ('Tzomet HaDrorim', 'Hertzberg Chaya','adults', 'https://www.sifreiorhachaim.co.il/wp-content/uploads/2022/05/2082.jpg', 60, 15);
+    ('From the depths of the sea', 'Zvi Aryeh Adler', 'Comics', '../../img/books images/mimezulut yam.jpg', 60, 19),
+    ('Left behind', 'R Lev', 'youth', '../../img/books images/nishar meachor.jpg', 16, 20),
+    ('Rosie', 'Shoshi Broida', 'youth', '../../img/books images/rozi.jpg', 49, 20),
+    ('Spirals', 'Tami Epstein', 'youth', '../../img/books images/spirelot.jpg', 49, 20),
+    ('Ice embroiderer', 'Ruthi Koenig', 'youth', '../../img/books images/rokemet bakerach.jpg', 50, 20),
+    ('Good soul', 'Ruthi Koenig', 'youth', '../../img/books images/neshama.jpg', 28, 20),
+    ('Peace in the farm', 'Menucha Beckerman', 'children', '../../img/books images/shalva.jpg', 84, 21),
+    ('Dina Dee in the Garden of Unity', 'Menucha Beckerman', 'children', '../../img/books images/ginat.jpg', 28, 20),
+    ('Dina Dee is forbidden to talk to strangers', 'Menucha Beckerman', 'children', '../../img/books images/zarim.jpg', 50, 20),
+    ('Dina Dee is going to first grade', 'Menucha Beckerman', 'children', '../../img/books images/kita a.jpg', 50, 20),
+    ('Dina is quite careful on the roads', 'Menucha Beckerman', 'children', '../../img/books images/dracim.jpg', 50, 20),
+    ('Dina loves the garden very much', 'Menucha Beckerman', 'children', '../../img/books images/gan.jpg', 50, 20),
+    ('Shulinka 1', 'Menucha Beckerman', 'adults', '../../img/books images/shulinka m.jpg', 83, 20),
+    ('Shulinka 2', 'Menucha Beckerman', 'adults', '../../img/books images/shulinka f.jpg', 83, 20),
+    ('Shais children adopt Tami', 'Menucha Beckerman', 'youth', '../../img/books images/tami.jpg', 60, 20),
+    ('Shais children follow the traitor A.', 'Menucha Beckerman', 'youth', '../../img/books images/boged.jpg', 60, 20),
+    ('Shais children come to the rescue', 'Menucha Beckerman', 'youth', '../../img/books images/ezra.jpg', 60, 20),
+    ('Tzomet HaDrorim', 'Hertzberg Chaya','adults', '../../img/books images/dror.jpg', 60, 15);
 
-        
-INSERT INTO lends(subscriberId, bookId, lendDate, returnDate) VALUES
+    INSERT INTO lends(subscriberId, bookId, lendDate, returnDate) VALUES
     (1, 5, '2025-01-01', '2025-01-05'),
     (2, 8, '2025-02-03', '2025-03-01'),
     (3, 7, '2025-02-10', '2025-03-05'),
@@ -144,4 +143,3 @@ INSERT INTO lends(subscriberId, bookId, lendDate, returnDate) VALUES
     (14, 12, '2025-05-06', '2025-05-10'),
     (10, 15, '2025-05-10', NULL),
     (23, 7, '2025-05-15', NULL);
-    

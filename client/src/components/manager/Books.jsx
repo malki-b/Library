@@ -8,6 +8,7 @@ import Edit from '../acts/Edit';
 import { Context } from "../general/Routers";
 import { Navigate } from 'react-router-dom';
 import Nav from './Nav';
+
 function Books() {
   const [books, setBooks] = useState({ all: [], filtered: [], search: [] });
   const [findFieldsVal, setFindFieldsVal] = useState({ id: "", name: "", authorName: "", category: "", shelf: "", isAvailable: "" })
@@ -45,7 +46,6 @@ function Books() {
             <span >{message.txt}</span>
             <button className={message.className} onClick={() => setMessage(null)}>ok</button>
           </div>}
-
           <Sort arrObjs={books} setArrObjs={setBooks} sortFields={['id', 'name', 'authorName', 'category', 'shelf', 'isAvailable']} />
           <Search arrObjs={books} setArrObjs={setBooks} fields={['id', 'name', 'authorName', 'category', 'shelf', 'isAvailable']} 
             findFieldsVal={findFieldsVal} setFindFieldsVal={setFindFieldsVal} isSimpleArrObjects={false} />
@@ -67,7 +67,6 @@ function Books() {
               ))}
             </ul>
           }
-
         </div>
       </div>
       : <Navigate to='/home' />

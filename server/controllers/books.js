@@ -36,7 +36,6 @@ async function deleteBook(req, res) {
     }
 }
 
-
 const booksController = {
     getBooks,
     createBook,

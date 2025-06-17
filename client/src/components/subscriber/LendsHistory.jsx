@@ -6,12 +6,14 @@ import { Context } from "../general/Routers";
 import { Navigate } from 'react-router-dom';
 import Nav from './Nav';
 import FilterButton from '../acts/FilterButton';
+
 function LendsHistory() {
     const [lends, setLends] = useState({ all: [], filtered: [], search: [] });
     const [findFieldsVal, setFindFieldsVal] = useState({ bookId: "", bookName: "", lendDate: "", returnDate: "" })
     const [message, setMessage] = useState(null)
     const [activeFilter, setActiveFilter] = useState('All lends')
     const [user] = useContext(Context)
+
     useEffect(() => {
         const fetchLends = async () => {
             try {
@@ -64,9 +66,7 @@ function LendsHistory() {
                                 </li>
                             ))}
                         </ul>
-
                     }
-
                 </div>
             </div>
             : <Navigate to='/home' />

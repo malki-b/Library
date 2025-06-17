@@ -35,7 +35,6 @@ async function createUser(req, res) {
             id: newUserId,
             subscriberNum
         });
-
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -108,15 +107,12 @@ function encrypt(number) {
     if (number < 100000 || number > 999999) {
         throw new Error("Number must be a 6-digit number.");
     }
-
     let encrypted = '';
     const shift = 5;
-
     for (let digit of String(number)) {
         let encryptedDigit = (parseInt(digit) + shift) % 10; // הצפנה
         encrypted += encryptedDigit;
     }
-
     return encrypted;
 }
 
@@ -124,15 +120,12 @@ function decrypt(encryptedNumber) {
     if (encryptedNumber.length !== 6) {
         throw new Error("Encrypted number must be a 6-digit number.");
     }
-
     let decrypted = '';
     const shift = 5;
-
     for (let digit of String(encryptedNumber)) {
         let decryptedDigit = (parseInt(digit) - shift + 10) % 10; // פענוח
         decrypted += decryptedDigit;
     }
-
     return decrypted;
 }
 
