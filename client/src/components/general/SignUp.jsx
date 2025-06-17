@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../css/register.css';
+import { POST } from './queries';
+import { Context } from './Routers';
 function SignUp() {
     const [form, setForm] = useState({
         name: "",
@@ -8,6 +10,7 @@ function SignUp() {
         address: "",
         numOfFamilyMembers: ""
     });
+    const [user, setUser] = useContext(Context)
     const [successMsg, setSuccessMsg] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -26,32 +29,23 @@ function SignUp() {
             ...form,
             numOfFamilyMembers: Number(form.numOfFamilyMembers),
             role: "subscriber",
-            debt: 0
+            debt: 20
         };
 
         try {
-            const res = await fetch("http://localhost:3000/users", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body)
+            const createdUser = await POST("http://localhost:3000/users", body)
+            setUser(createdUser)
+            setSuccessMsg(`You were registered successfully! your subscriber number is ${createdUser.subscriberNum}. \n You have to pay 20 NIS.`);
+            setForm({
+                name: "",
+                email: "",
+                address: "",
+                numOfFamilyMembers: ""
             });
-            if (res.ok) {
-                const data = await res.json();
-                console.log("SERVER RESPONSE:", data);
-                setSuccessMsg(`נרשמת בהצלחה! מספר המנוי שלך הוא: ${data.subscriberNum}. שמור אותו כדי להתחבר.`);
-                setForm({
-                    name: "",
-                    email: "",
-                    address: "",
-                    numOfFamilyMembers: ""
-                });
-                setShowModal(true);
-            } else {
-                const data = await res.json();
-                setError(data.error || "Registration failed. Please try again.");
-            }
-        } catch (err) {
-            setError("Server error. Please try again.");
+            setShowModal(true);
+
+        } catch {
+            setError("Registering was failed, try again");
         }
     }
 
@@ -115,7 +109,7 @@ function SignUp() {
                 <div className="modal-overlay">
                     <div className="modal-content">
                         <p>{successMsg}</p>
-                        <button onClick={() => navigate('/login')}>אישור</button>
+                        <button onClick={() => navigate('/subscriber/payment')}>אישור</button>
                     </div>
                 </div>
             )}

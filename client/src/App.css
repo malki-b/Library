@@ -66,7 +66,7 @@ body {
   color: #888;
 }
 
-body:has(.backgroundImagePage){
+body:has(.backgroundImagePage) {
   overflow: hidden;
 }
 
@@ -74,16 +74,21 @@ body:has(.backgroundImagePage){
   background-image: url('../../img/6870041.jpg');
   background-size: cover;
   background-position: center;
-  height: 100vh;
   display: flex;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
 .backgroundColorPage {
   background-color: pink;
-  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
 }
 
 .page {
@@ -126,7 +131,7 @@ body:has(.backgroundImagePage){
   border-radius: 10px;
 }
 
-.noResaults {
+.noResults {
   color: red;
   text-align: center;
   width: 100%;
@@ -135,9 +140,4 @@ body:has(.backgroundImagePage){
 
 .okBtn {
   background-attachment: fixed;
-}
-
-
-body:has(.backgroundImagePage){
-  overflow: hidden;
 }

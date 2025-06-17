@@ -54,7 +54,7 @@ function Payment() {
       <Nav />
       {
         user.debt <= 0 ?
-          <h1 className="page backgroundImagePage whiteText">You have no debt to the library</h1>
+          <h2 className="whiteText">You have no debt to the library</h2>
         :
           <>
             <div style={{ height: "60px" }}></div>
