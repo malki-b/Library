@@ -70,6 +70,8 @@ async function authenticateUser(req, res) {
 
 async function updateUserDept(req, res) {
     try {
+        console.log(req.body.amount);
+        
         await usersService.updateUserDept(req.params.id, req.body.amount)
         res.status(200).json("user's dept was updated successfully");
     } catch (error) {
