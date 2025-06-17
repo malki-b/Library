@@ -35,8 +35,7 @@ h1 {
   margin-left: -35px;
   font-size: 3.2em;
   line-height: 1.1;
-
-   color: white;
+  color: white;
   text-shadow: 1px 1px 5px black;
 }
 
@@ -60,7 +59,8 @@ img {
   height: auto;
 }
 
-input, select{
+input,
+select {
   border-radius: 5px;
   margin: 10px;
 }
@@ -79,7 +79,8 @@ ul {
   /* אין מרווחים נוספים */
 }
 
-li, .item {
+li,
+.item {
   margin-top: 10px;
   background-color: white;
   border: 1px solid #ccc;
@@ -91,7 +92,7 @@ li, .item {
   height: auto;
 }
 
-.item{
+.item {
   justify-self: center;
   width: 500px;
   margin-bottom: 50px;
