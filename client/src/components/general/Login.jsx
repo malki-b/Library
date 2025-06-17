@@ -38,9 +38,12 @@ function Login() {
                 }
             } else {
                 setErrorMessage("Incorrect name or subscriber number.");
+                setSubscriberNum('');
             }
         } catch (e) {
             setErrorMessage("Incorrect name or subscriber number.");
+                            setSubscriberNum('');
+
         }
     }
 
