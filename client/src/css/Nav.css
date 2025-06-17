@@ -1,17 +1,19 @@
 .nav {
   position: fixed;
   top: 0;
-  width: 110%;
   background-color: #ffdee2;
   padding: 10px;
   display: flex;
   gap: 10px;
-  justify-content: center;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Prevent vertical overflow */
+  white-space: nowrap; /* Prevent buttons from wrapping onto the next line */
 }
 
 .nav button {
+  min-width: 120px; /* Set a minimum width for buttons */
   padding: 8px 14px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -19,19 +21,24 @@
   cursor: pointer;
   transition: 0.3s;
   color: black;
-
+  white-space: normal; /* Allow text to wrap if it exceeds width */
 }
 
-/* מעבר עכבר */
+/* Hover effect */
 .nav button:hover {
   background-color: pink;
   color: white;
 }
 
-/* כפתור פעיל */
+/* Active button */
 .nav button.active {
   background-color: #47927b;
   color: white;
+<<<<<<< HEAD
   border-color: #377260;
 }
 
+=======
+  border-color: #004999;
+}
+>>>>>>> 7ffd980f63cd8038037e37270e792213763d68d2

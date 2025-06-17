@@ -33,12 +33,12 @@ export default function Nav() {
         navigate("/home", { replace: true });
     };
 
-    function isActive(path){
+    function isActive(path) {
         return location.pathname === path ? 'active' : '';
     }
 
     return (
-        <nav style={{ marginBottom: "20px" }} className="nav">
+        <nav className="nav">
             <button className={isActive("/subscriber/homepage")} onClick={() => navigate("/subscriber/homepage")}>subscriber home</button>
             <button className={isActive("/subscriber/lendBook")} onClick={() => navigate("/subscriber/lendBook")}>lend book</button>
             <button className={isActive("/subscriber/returnBook")} onClick={() => navigate("/subscriber/returnBook")}>return Book</button>
