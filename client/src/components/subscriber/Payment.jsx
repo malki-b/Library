@@ -1,4 +1,3 @@
-
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import Nav from "./Nav";
 import { useState } from "react";
